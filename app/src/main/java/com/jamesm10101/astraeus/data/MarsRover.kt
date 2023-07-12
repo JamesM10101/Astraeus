@@ -1,7 +1,6 @@
 package com.jamesm10101.astraeus.data
 
 import com.squareup.moshi.Json
-import java.util.*
 
 data class MarsRover(
     @Json(name = "id") val id: Int,
