@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Astraeus</string>
+
+    <!--  Apod  -->
+    <string name="apod_header">Astronomy Picture of the Day</string>
+    <string name="apod_image">APOD Image</string>
+    <string name="apod_video">APOD video</string>
+
+    <!--  Rover  -->
+    <string name="rover_photos">Rover photos</string>
 </resources>
