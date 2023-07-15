@@ -34,7 +34,7 @@ interface MarsRoverAPIService {
     suspend fun getRoverLatestPhotos(
         @Path("rover") rover: String,
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
-    ): MarsRoverPhotos
+    ): MarsRoverLatestPhotos
 
     @GET("{rover}/latest_photos")
     suspend fun getRoverLatestPhotos(
@@ -63,7 +63,7 @@ interface MarsRoverAPIService {
     @GET("{rover}/photos")
     suspend fun getRoverPhotosEarthDate(
         @Path("rover") rover: String,
-        @Query("earth_date") sol: String,
+        @Query("earth_date") earthDate: String,
         @Query("page") page: Int = 1,
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): MarsRoverPhotos
@@ -71,7 +71,7 @@ interface MarsRoverAPIService {
     @GET("{rover}/photos")
     suspend fun getRoverPhotosEarthDate(
         @Path("rover") rover: String,
-        @Query("earth_date") sol: String,
+        @Query("earth_date") earthDate: String,
         @Query("page") page: Int = 1,
         @Query("camera") camera: String,
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
