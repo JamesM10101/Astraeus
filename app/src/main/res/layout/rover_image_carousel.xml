@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="roverDetails"
+            type="com.jamesm10101.astraeus.data.MarsRover" />
+
+        <variable
+            name="roverPhotos"
+            type="com.jamesm10101.astraeus.data.MarsRoverPhotos" />
+
+        <variable
+            name="roverLatestPhotos"
+            type="com.jamesm10101.astraeus.data.MarsRoverLatestPhotos" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtV_carouselTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="@{roverDetails.name + ` Rover`}"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cycV_roverPhotos"
+            listData="@{roverPhotos.photos != null ? roverPhotos.photos : roverLatestPhotos.photos}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:clipToPadding="false"
+            android:contentDescription="@string/rover_photos"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtV_carouselTitle"
+            app:spanCount="1"
+            tools:listitem="@layout/rover_image_carousel_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
