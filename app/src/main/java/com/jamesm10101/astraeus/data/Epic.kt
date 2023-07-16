@@ -6,6 +6,7 @@ data class Epic(
     @Json(name = "identifier") val id: String,
     @Json(name = "caption") val caption: String,
     @Json(name = "image") val image: String,
+    var imgSrcUrl: String?,
     @Json(name = "version") val version: String,
     @Json(name = "date") val date: String,
     @Json(name = "centroid_coordinates") val centroidCoords: Coordinates,
