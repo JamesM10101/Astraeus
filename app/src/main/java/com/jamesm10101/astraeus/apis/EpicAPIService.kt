@@ -26,6 +26,12 @@ interface EpicAPIService {
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): List<EpicDate>
 
+    @GET("{type}")
+    suspend fun getLatest(
+        @Path("type") type: String,
+        @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
+    ): List<Epic>
+
     @GET("{type}/date/{date}")
     suspend fun getByDate(
         @Path("type") type: String,
@@ -42,7 +48,7 @@ interface EpicAPIService {
     suspend fun getEnhanced(
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): List<Epic>
-    
+
     @GET("aerosol")
     suspend fun getAerosol(
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
