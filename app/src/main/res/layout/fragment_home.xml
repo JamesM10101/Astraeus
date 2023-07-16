@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.jamesm10101.astraeus.viewModels.HomeViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        android:padding="8dp"
+        tools:context="com.jamesm10101.astraeus.views.HomeFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/apod_component"
+                layout="@layout/apod_component"
+                app:apod="@{viewModel.apodResult}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <include
+                android:id="@+id/rover1_component"
+                layout="@layout/rover_image_carousel"
+                app:roverLatestPhotos="@{viewModel.rover1photos}"
+                app:roverName="@{viewModel.rover1Name}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <include
+                android:id="@+id/epic_component"
+                layout="@layout/epic_image_carousel"
+                app:epicPhotos="@{viewModel.epicLatest}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <include
+                android:id="@+id/rover2_component"
+                layout="@layout/rover_image_carousel"
+                app:roverLatestPhotos="@{viewModel.rover2photos}"
+                app:roverName="@{viewModel.rover2Name}" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
