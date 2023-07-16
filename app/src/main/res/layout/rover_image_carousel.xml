@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="roverDetails"
-            type="com.jamesm10101.astraeus.data.MarsRover" />
+            name="roverName"
+            type="String" />
 
         <variable
             name="roverPhotos"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:text="@{roverDetails.name + ` Rover`}"
+            android:text="@{roverName + ` Rover`}"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
