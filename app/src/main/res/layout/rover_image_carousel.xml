@@ -36,7 +36,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cycV_roverPhotos"
-            listData="@{roverPhotos.photos != null ? roverPhotos.photos : roverLatestPhotos.photos}"
+            roverListData="@{roverPhotos.photos != null ? roverPhotos.photos : roverLatestPhotos.photos}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
