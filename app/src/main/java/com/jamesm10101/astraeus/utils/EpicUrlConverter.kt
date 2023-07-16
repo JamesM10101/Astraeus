@@ -1,7 +1,7 @@
 package com.jamesm10101.astraeus.utils
 
-enum class EpicCollection { NATURAL, ENHANCED, AEROSOL, CLOUD }
-enum class EpicImageType { PNG, JPG, THUMBS }
+import com.jamesm10101.astraeus.data.EpicCollection
+import com.jamesm10101.astraeus.data.EpicImageType
 
 fun epicImageConverter(image: String, collection: EpicCollection, imgType: EpicImageType): String {
 
