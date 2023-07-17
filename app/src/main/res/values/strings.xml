@@ -8,4 +8,8 @@
 
     <!--  Rover  -->
     <string name="rover_photos">Rover photos</string>
+
+    <!--  Navigation Menu  -->
+    <string name="menu_search">Search</string>
+    <string name="menu_home">Home</string>
 </resources>
