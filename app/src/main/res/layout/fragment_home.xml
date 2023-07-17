@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:background="#F5F5F5"
         android:padding="8dp"
+        android:scrollbars="none"
         tools:context="com.jamesm10101.astraeus.views.HomeFragment">
 
         <LinearLayout
