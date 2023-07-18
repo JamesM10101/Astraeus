@@ -10,32 +10,33 @@
             type="androidx.lifecycle.LiveData&lt;com.jamesm10101.astraeus.data.APOD>" />
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#212121"
-        android:clipToPadding="false"
-        android:scrollbars="none"
         tools:context=".views.ApodFragment">
 
-        <RelativeLayout
+        <com.ortiz.touchview.TouchImageView
+            android:id="@+id/imgV_APOD_HD"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/apod_image"
+            app:imageUrl="@{apodResult.imgSrcHDUrl}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
 
-            <ImageView
-                android:id="@+id/imgV_APOD_HD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/apod_image"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{apodResult.imgSrcHDUrl}"
-                tools:src="@tools:sample/backgrounds/scenic" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgV_APOD_HD">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imgV_APOD_HD"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -94,8 +95,8 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+        </ScrollView>
 
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
