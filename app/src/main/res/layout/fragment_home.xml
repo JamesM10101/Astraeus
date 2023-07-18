@@ -13,6 +13,10 @@
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.HomeViewModel" />
 
+        <variable
+            name="apodClickListener"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
     <ScrollView
@@ -32,6 +36,7 @@
             <include
                 android:id="@+id/apod_component"
                 layout="@layout/apod_component"
+                android:onClickListener="@{apodClickListener}"
                 app:apod="@{mainViewModel.apodResult}" />
 
             <View
