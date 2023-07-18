@@ -30,7 +30,22 @@ class MainViewModel : ViewModel() {
     ) {
         viewModelScope.launch {
             try {
-                apodResult.value = PlanetaryAPI.retrofitService.getCurrentApod()
+                val res = PlanetaryAPI.retrofitService.getCurrentApod()
+
+                // fix copyright formatting
+                val copyright = res.copyright?.replace("\n", "")
+
+                apodResult.value = APOD(
+                    imgSrcUrl = res.imgSrcUrl,
+                    imgSrcHDUrl = res.imgSrcHDUrl,
+                    copyright = copyright,
+                    date = res.date,
+                    mediaType = res.mediaType,
+                    title = res.title,
+                    serviceVersion = res.serviceVersion,
+                    explanation = res.explanation
+                )
+
             } catch (e: Exception) {
                 Log.e("GetCurrentAPOD", e.message.toString())
             }
