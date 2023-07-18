@@ -9,6 +9,9 @@
     <!--  Rover  -->
     <string name="rover_photos">Rover photos</string>
 
+    <!--  Epic  -->
+    <string name="epic_earth_photos">Epic Earth Photos</string>
+
     <!--  Navigation Menu  -->
     <string name="menu_search">Search</string>
     <string name="menu_home">Home</string>

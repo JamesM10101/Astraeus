@@ -40,7 +40,6 @@ fun epicImageConverter(image: String, collection: EpicCollection, imgType: EpicI
             day = image.substring(25, 27)
         }
 
-        else -> {}
     }
 
     return "https://epic.gsfc.nasa.gov/archive/${collection.name.lowercase()}/${year}/${month}/${day}/${imgExtension.lowercase()}/${image}.${imgExtension}"
