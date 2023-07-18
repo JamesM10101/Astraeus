@@ -6,16 +6,21 @@
     <data>
 
         <variable
+            name="mainViewModel"
+            type="com.jamesm10101.astraeus.viewModels.MainViewModel" />
+
+        <variable
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.HomeViewModel" />
+
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F5F5F5"
-        android:padding="8dp"
         android:clipToPadding="false"
+        android:padding="8dp"
         android:scrollbars="none"
         tools:context="com.jamesm10101.astraeus.views.HomeFragment">
 
@@ -27,7 +32,7 @@
             <include
                 android:id="@+id/apod_component"
                 layout="@layout/apod_component"
-                app:apod="@{viewModel.apodResult}" />
+                app:apod="@{mainViewModel.apodResult}" />
 
             <View
                 android:layout_width="match_parent"

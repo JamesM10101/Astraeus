@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jamesm10101.astraeus.apis.EpicAPI
 import com.jamesm10101.astraeus.apis.MarsRoverAPI
-import com.jamesm10101.astraeus.apis.PlanetaryAPI
-import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.data.EpicCollection
 import com.jamesm10101.astraeus.data.EpicImageType
@@ -20,7 +18,6 @@ import kotlin.random.Random
 
 class HomeViewModel : ViewModel() {
 
-    private val _apodResult = MutableLiveData<APOD>()
     private val _epicLatest = MutableLiveData<List<Epic>>()
     private val _rover1Name = MutableLiveData<String>()
     private val _rover2Name = MutableLiveData<String>()
@@ -28,7 +25,6 @@ class HomeViewModel : ViewModel() {
     private val _rover2photos = MutableLiveData<MarsRoverLatestPhotos>()
 
     // accessors
-    val apodResult: LiveData<APOD> = _apodResult
     val epicLatest: LiveData<List<Epic>> = _epicLatest
     val rover1Name: LiveData<String> = _rover1Name
     val rover2Name: LiveData<String> = _rover2Name
@@ -36,7 +32,6 @@ class HomeViewModel : ViewModel() {
     val rover2photos: LiveData<MarsRoverLatestPhotos> = _rover2photos
 
     init {
-        getCurrentAPOD(_apodResult)
         getEpicLatest(_epicLatest, EpicCollection.ENHANCED, EpicImageType.JPG)
         getRovers()
     }
@@ -110,23 +105,6 @@ class HomeViewModel : ViewModel() {
                     MarsRoverAPI.retrofitService.getRoverLatestPhotos(roverName.name)
             } catch (e: Exception) {
                 Log.e("GetRoverLatest", e.message.toString())
-            }
-        }
-    }
-
-    /**
-     * Gets the latest apod from NASA's APOD API
-     *
-     * @param apodResult A mutable live data object that stores the apod
-     */
-    private fun getCurrentAPOD(
-        apodResult: MutableLiveData<APOD>
-    ) {
-        viewModelScope.launch {
-            try {
-                apodResult.value = PlanetaryAPI.retrofitService.getCurrentApod()
-            } catch (e: Exception) {
-                Log.e("GetCurrentAPOD", e.message.toString())
             }
         }
     }
