@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="viewModel"
+            type="com.jamesm10101.astraeus.viewModels.MarsRoverPhotoViewModel" />
+
+        <variable
+            name="roverPhoto"
+            type="com.jamesm10101.astraeus.data.MarsRoverPhoto" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/nasaBlue"
+        tools:context=".views.MarsRoverPhotoFragment">
+
+        <include
+            layout="@layout/touch_image_full"
+            app:photoUrl="@{roverPhoto.imgSrcUrl}"
+            app:showImage="@{viewModel.showTouchImage}"
+            app:toggleView="@{viewModel.toggleShowTouchImage()}"
+            tools:visibility="visible" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:visibility="@{viewModel.showTouchImage ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgV_roverPhoto"
+            tools:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgV_roverPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/rover_image"
+                    android:onClickListener="@{viewModel.toggleShowTouchImage()}"
+                    android:scaleType="fitCenter"
+                    app:imageUrl="@{roverPhoto.imgSrcUrl}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/imgV_roverPhoto">
+
+                    <TextView
+                        android:id="@+id/txtV_solLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sol_colon"
+                        android:textColor="#f5f5f5"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtV_sol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:maxLines="1"
+                        android:text="@{String.valueOf(roverPhoto.sol)}"
+                        android:textColor="#f5f5f5"
+                        android:textSize="14sp"
+                        app:layout_constraintLeft_toRightOf="@id/txtV_solLabel"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/placeholder_number" />
+
+                    <TextView
+                        android:id="@+id/txtV_earthDateLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/earth_date_colon"
+                        android:textColor="#f5f5f5"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtV_solLabel" />
+
+                    <TextView
+                        android:id="@+id/txtV_earthDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:maxLines="1"
+                        android:text="@{roverPhoto.earthDate}"
+                        android:textColor="#f5f5f5"
+                        android:textSize="14sp"
+                        app:layout_constraintLeft_toRightOf="@id/txtV_earthDateLabel"
+                        app:layout_constraintTop_toBottomOf="@id/txtV_solLabel"
+                        tools:text="@string/placeholder_date" />
+
+                    <TextView
+                        android:id="@+id/txtV_cameraLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/camera_colon"
+                        android:textColor="#f5f5f5"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtV_earthDateLabel" />
+
+                    <TextView
+                        android:id="@+id/txtV_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:maxLines="1"
+                        android:text="@{roverPhoto.camera.fullName}"
+                        android:textColor="#f5f5f5"
+                        android:textSize="14sp"
+                        app:layout_constraintLeft_toRightOf="@id/txtV_cameraLabel"
+                        app:layout_constraintTop_toBottomOf="@id/txtV_earthDateLabel"
+                        tools:text="@string/placeholder" />
+
+                    <TextView
+                        android:id="@+id/txtV_roverName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="start|center_vertical"
+                        android:onClickListener="@{viewModel.toggleShowRoverDetails()}"
+                        android:text="@{roverPhoto.rover.name}"
+                        android:textColor="#f5f5f5"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:drawableEndCompat="@drawable/ic_arrow_head_down"
+                        app:drawableTint="#f5f5f5"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtV_cameraLabel"
+                        tools:text="Placeholder Rover" />
+
+                    <include
+                        layout="@layout/mars_rover_info_component"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:visibility="@{viewModel.showRoverDetails == true ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtV_roverName"
+                        app:rover="@{roverPhoto.rover}" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+</layout>
