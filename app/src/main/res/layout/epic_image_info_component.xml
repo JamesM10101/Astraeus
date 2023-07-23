@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="epicPhoto"
+            type="com.jamesm10101.astraeus.data.Epic" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_epicDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ee212121"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp">
+
+            <TextView
+                android:id="@+id/txtV_dateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/txtV_date"
+                android:text="@string/taken_colon"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtV_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:maxLines="2"
+                android:text="@{epicPhoto.date}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_dateLabel"
+                tools:text="@string/placeholder_date" />
+
+            <TextView
+                android:id="@+id/txtV_centroidCoordsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/txtV_centroidCoords"
+                android:text="@string/centroid_coords_colon"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_date" />
+
+            <TextView
+                android:id="@+id/txtV_centroidCoords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:maxLines="2"
+                android:text="@{String.valueOf(epicPhoto.centroidCoords.lat) + `, ` + String.valueOf(epicPhoto.centroidCoords.lon)}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_centroidCoordsLabel"
+                tools:text="@string/placeholder_lat_long" />
+
+            <TextView
+                android:id="@+id/txtV_dscovrEarthDistLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/txtV_dscovrEarthDist"
+                android:text="@string/earth_distance_colon"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_centroidCoords" />
+
+            <TextView
+                android:id="@+id/txtV_dscovrEarthDist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:maxLines="2"
+                android:text="@{String.format(&quot;%,.0f&quot;, Math.sqrt(Math.pow(epicPhoto.dscovrPos.x, 2) + Math.pow(epicPhoto.dscovrPos.y, 2) + Math.pow(epicPhoto.dscovrPos.z, 2))) + ` km`}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_dscovrEarthDistLabel"
+                tools:text="@string/placeholder_distance" />
+
+            <TextView
+                android:id="@+id/txtV_dscovrLunarDistLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/txtV_dscovrEarthDist"
+                android:text="@string/lunar_distance_colon"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_dscovrEarthDist" />
+
+            <TextView
+                android:id="@+id/txtV_dscovrLunarDist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:maxLines="2"
+                android:text="@{String.format(&quot;%,.0f&quot;, Math.sqrt(Math.pow(epicPhoto.lunarPos.x, 2) + Math.pow(epicPhoto.lunarPos.y, 2) + Math.pow(epicPhoto.lunarPos.z, 2))) + ` km`}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_dscovrLunarDistLabel"
+                tools:text="@string/placeholder_distance" />
+
+            <TextView
+                android:id="@+id/txtV_dscovrSunDistLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/txtV_dscovrEarthDist"
+                android:text="@string/solar_distance_colon"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_dscovrLunarDist" />
+
+            <TextView
+                android:id="@+id/txtV_dscovrSunDist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:maxLines="2"
+                android:text="@{String.format(&quot;%,.0f&quot;, Math.sqrt(Math.pow(epicPhoto.sunPos.x, 2) + Math.pow(epicPhoto.sunPos.y, 2) + Math.pow(epicPhoto.sunPos.z, 2))) + ` km`}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtV_dscovrSunDistLabel"
+                tools:text="@string/placeholder_distance" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
