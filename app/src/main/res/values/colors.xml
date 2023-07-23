@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--  Nasa Colors  -->
+    <color name="nasaRed">#FC3D21</color>
+    <color name="nasaBlue">#0B3D91</color>
+
+    <!--  Rover Status Text Colors -->
+    <color name="inactiveRoverText">#00C000</color>
+    <color name="activeRoverText">#FF0000</color>
+
 </resources>

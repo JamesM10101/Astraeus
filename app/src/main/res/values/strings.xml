@@ -4,6 +4,18 @@
 
     <string name="app_name">Astraeus</string>
 
+    <!--  Placeholders  -->
+    <string name="placeholder">placeholder</string>
+    <string name="placeholder_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.</string>
+    <string name="placeholder_date">1969&#8211;07&#8211;16</string>
+    <string name="placeholder_number">1609</string>
+    <string name="placeholder_distance">15,329 km</string>
+    <string name="placeholder_lat_long">28.573469, -80.651070</string>
+    <string name="placeholder_label">Label:</string>
+
+    <!--  Labels  -->
+    <string name="view_image_info">View Image Info</string>
+
     <!--  Apod  -->
     <string name="apod_header">Astronomy Picture of the Day</string>
     <string name="apod_image">APOD Image</string>
@@ -11,6 +23,11 @@
 
     <!--  Rover  -->
     <string name="rover_photos">Rover photos</string>
+    <string name="rover_image">Rover Image</string>
+    <string name="launch_date_colon">Launch Date:</string>
+    <string name="landing_date_colon">Landing Date:</string>
+    <string name="total_photos_colon">Total Photos:</string>
+    <string name="last_response_colon">Last Response:</string>
 
     <!--  Epic  -->
     <string name="epic_earth_photos">Epic Earth Photos</string>
@@ -22,5 +39,14 @@
     <!--  Image Details  -->
     <string name="copyright_colon">Copyright:</string>
     <string name="date_colon">Date:</string>
+    <string name="sol_colon">Sol:</string>
+    <string name="earth_date_colon">Earth Date:</string>
+    <string name="camera_colon">Camera:</string>
+    <string name="status_colon">Status:</string>
+    <string name="taken_colon">Taken:</string>
+    <string name="centroid_coords_colon">Centroid Coords:</string>
+    <string name="earth_distance_colon">Earth Distance:</string>
+    <string name="lunar_distance_colon">Lunar Distance:</string>
+    <string name="solar_distance_colon">Solar Distance:</string>
 
 </resources>
