@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.jamesm10101.astraeus.viewModels.EpicPhotoViewModel" />
+
+        <variable
+            name="epicPhoto"
+            type="com.jamesm10101.astraeus.data.Epic" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/nasaBlue"
+        tools:context=".views.EpicPhotoFragment">
+
+        <include
+            layout="@layout/touch_image_full"
+            app:photoUrl="@{epicPhoto.imgSrcUrl}"
+            app:showImage="@{viewModel.showTouchImage}"
+            app:toggleView="@{viewModel.toggleShowTouchImage()}"
+            tools:visibility="visible" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:visibility="@{viewModel.showTouchImage ? View.GONE : View.VISIBLE}"
+            tools:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgV_epicPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/rover_image"
+                    android:onClickListener="@{viewModel.toggleShowTouchImage()}"
+                    android:scaleType="fitCenter"
+                    app:imageUrl="@{epicPhoto.imgSrcUrl}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <ImageButton
+                    android:id="@+id/btn_showInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/view_image_info"
+                    android:onClickListener="@{viewModel.toggleShowImageDetails()}"
+                    android:src="@drawable/ic_info"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+
+                <include
+                    layout="@layout/epic_image_info_component"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:visibility="@{viewModel.showEpicDetails == true ? View.VISIBLE : View.GONE}"
+                    app:epicPhoto="@{epicPhoto}"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_showInfo" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/imgV_epicPhoto">
+
+                    <TextView
+                        android:id="@+id/txtV_caption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:maxLines="10"
+                        android:text="@{epicPhoto.caption}"
+                        android:textColor="#f5f5f5"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/placeholder_lorem" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+</layout>
