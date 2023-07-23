@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="toggleView"
+            type="View.OnClickListener" />
+
+        <variable
+            name="showImage"
+            type="Boolean" />
+
+        <variable
+            name="photoUrl"
+            type="String" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="@{showImage ? View.VISIBLE : View.GONE}"
+        tools:visibility="visible">
+
+        <com.ortiz.touchview.TouchImageView
+            android:id="@+id/imgV_epicPhotoFull"
+            imageUrl="@{photoUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/rover_image"
+            android:scaleType="fitCenter"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <ImageButton
+            android:id="@+id/btn_exitTouch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/view_image_info"
+            android:onClickListener="@{toggleView}"
+            android:src="@drawable/ic_cancel"
+            app:layout_constraintRight_toRightOf="@id/imgV_epicPhotoFull"
+            app:layout_constraintTop_toTopOf="@id/imgV_epicPhotoFull"
+            app:tint="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
