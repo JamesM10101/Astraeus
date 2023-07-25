@@ -37,7 +37,6 @@
             android:clipToPadding="false"
             android:fillViewport="true"
             android:scrollbars="none"
-            android:visibility="@{viewModel.showTouchImage ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgV_roverPhoto"
             tools:visibility="visible">

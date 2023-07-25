@@ -35,7 +35,6 @@
             android:clipToPadding="false"
             android:fillViewport="true"
             android:scrollbars="none"
-            android:visibility="@{viewModel.showTouchImage ? View.GONE : View.VISIBLE}"
             tools:visibility="visible">
 
             <androidx.constraintlayout.widget.ConstraintLayout
