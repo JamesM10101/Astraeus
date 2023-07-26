@@ -1,16 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Astraeus" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Astraeus" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/nasaBlue</item>
+        <item name="colorPrimaryVariant">@color/nasaBlueDarkVariant</item>
+        <item name="colorOnPrimary">@color/white</item>
+
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/nasaRed</item>
+        <item name="colorSecondaryVariant">@color/nasaRedDarkVariant</item>
         <item name="colorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="colorOnSurfaceVariant">#000000</item>
     </style>
+
+    <style name="Astraeus.BottomNavBar.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/nasaBlueDarkVariant</item>
+    </style>
+
 </resources>
