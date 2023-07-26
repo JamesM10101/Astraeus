@@ -10,6 +10,10 @@
         <import type="android.graphics.drawable.Drawable" />
 
         <variable
+            name="mainViewModel"
+            type="com.jamesm10101.astraeus.viewModels.MainViewModel" />
+
+        <variable
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.MarsRoverPhotoViewModel" />
 
@@ -27,8 +31,8 @@
         <include
             layout="@layout/touch_image_full"
             app:photoUrl="@{roverPhoto.imgSrcUrl}"
-            app:showImage="@{viewModel.showTouchImage}"
-            app:toggleView="@{viewModel.toggleShowTouchImage()}"
+            app:showImage="@{mainViewModel.showTouchImage}"
+            app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
             tools:visibility="visible" />
 
         <ScrollView
@@ -51,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/rover_image"
-                    android:onClickListener="@{viewModel.toggleShowTouchImage()}"
+                    android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
                     android:scaleType="fitCenter"
                     app:imageUrl="@{roverPhoto.imgSrcUrl}"
                     app:layout_constraintTop_toTopOf="parent"

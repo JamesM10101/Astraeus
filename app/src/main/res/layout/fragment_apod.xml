@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="mainViewModel"
+            type="com.jamesm10101.astraeus.viewModels.MainViewModel" />
+
+        <variable
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.ApodViewModel" />
 
@@ -26,8 +30,8 @@
         <include
             layout="@layout/touch_image_full"
             app:photoUrl="@{apodResult.imgSrcUrl}"
-            app:showImage="@{viewModel.showTouchImage}"
-            app:toggleView="@{viewModel.toggleShowTouchImage()}"
+            app:showImage="@{mainViewModel.showTouchImage}"
+            app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
             tools:visibility="visible" />
 
         <ScrollView
@@ -48,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/apod_image"
-                    android:onClickListener="@{viewModel.toggleShowTouchImage()}"
+                    android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
                     android:scaleType="fitCenter"
                     app:imageUrl="@{apodResult.imgSrcHDUrl}"
                     app:layout_constraintTop_toTopOf="parent"

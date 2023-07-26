@@ -12,12 +12,27 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
     private val _apodResult = MutableLiveData<APOD>()
+    private val _showTouchImage = MutableLiveData<Boolean>()
 
     // accessor
     val apodResult: LiveData<APOD> = _apodResult
+    val showTouchImage: LiveData<Boolean> = _showTouchImage
 
     init {
         getCurrentAPOD(_apodResult)
+    }
+
+    /**
+     * Toggles the visibility of the TouchImage component
+     *
+     * @return the click listener for the view
+     */
+    fun toggleShowTouchImage() {
+        try {
+            _showTouchImage.value = _showTouchImage.value != true
+        } catch (e: Exception) {
+            Log.e("showTouchImage", e.message.toString())
+        }
     }
 
     /**
@@ -51,4 +66,6 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+
+
 }
