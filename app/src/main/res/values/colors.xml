@@ -8,9 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!--  Custom Colors  -->
+    <color name="offWhite">#F5F5F5</color>
+
     <!--  Nasa Colors  -->
     <color name="nasaRed">#FC3D21</color>
     <color name="nasaBlue">#0B3D91</color>
+    <color name="nasaRedLightVariant">#FF6A53</color>
+    <color name="nasaRedDarkVariant">#C5311B</color>
+    <color name="nasaBlueDarkVariant">#07285F</color>
+    <color name="nasaBlueLightVariant">#1557C7</color>
 
     <!--  Rover Status Text Colors -->
     <color name="inactiveRoverText">#00C000</color>
