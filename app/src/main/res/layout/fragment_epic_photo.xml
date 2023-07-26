@@ -94,7 +94,7 @@
                         android:justificationMode="inter_word"
                         android:maxLines="10"
                         android:text="@{epicPhoto.caption}"
-                        android:textColor="#f5f5f5"
+                        android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="@string/placeholder_lorem" />
