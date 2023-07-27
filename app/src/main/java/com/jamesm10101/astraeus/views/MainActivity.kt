@@ -27,24 +27,24 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         // set the navigation item listener
         val navView = findViewById<BottomNavigationView>(R.id.main_bottom_nav)
         navView.setOnItemSelectedListener(this)
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         val transaction = supportFragmentManager.beginTransaction()
-        var replacementFragment = supportFragmentManager.fragments[0]
-
-        when (item.itemId) {
+        
+        val replacementFragment = when (item.itemId) {
             R.id.menu_home -> {
-                replacementFragment = HomeFragment()
+                HomeFragment()
             }
 
-            R.id.menu_search -> {
-                // TODO -- SearchFragment()
+            R.id.menu_explore -> {
+                ExploreFragment()
             }
 
             else -> {
-                return false
+                supportFragmentManager.fragments[0]
             }
         }
 
