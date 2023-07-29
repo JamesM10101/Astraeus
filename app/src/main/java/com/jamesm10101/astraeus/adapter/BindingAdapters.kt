@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.data.Epic
+import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
-
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -36,5 +36,12 @@ fun bindRecyclerViewRover(recyclerView: RecyclerView, data: List<MarsRoverPhoto>
 fun bindRecyclerViewEpic(recyclerView: RecyclerView, data: List<Epic>?) {
     recyclerView.adapter = EpicCarouselAdapter()
     val adapter = recyclerView.adapter as EpicCarouselAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("exploreListData")
+fun bindRecyclerViewExplore(recyclerView: RecyclerView, data: List<ExploreSuggestionItem>?) {
+    recyclerView.adapter = ExploreCarouselAdapter()
+    val adapter = recyclerView.adapter as ExploreCarouselAdapter
     adapter.submitList(data)
 }
