@@ -12,6 +12,7 @@
     <string name="placeholder_distance">15,329 km</string>
     <string name="placeholder_lat_long">28.573469, -80.651070</string>
     <string name="placeholder_label">Label:</string>
+    <string name="placeholder_title">Title</string>
 
     <!--  Labels  -->
     <string name="view_image_info">View Image Info</string>
@@ -49,5 +50,8 @@
     <string name="earth_distance_colon">Earth Distance:</string>
     <string name="lunar_distance_colon">Lunar Distance:</string>
     <string name="solar_distance_colon">Solar Distance:</string>
+
+    <!--  Search  -->
+    <string name="search_here">Search Here</string>
 
 </resources>
