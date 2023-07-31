@@ -92,7 +92,7 @@ class HomeViewModel : ViewModel() {
      * Gets the latest info and images about the specified Mars rover from NASA's Mars Rover API.
      *
      * @param roverName The name of the Mars rover
-     * @param roverDetails A mutable live data object that stores the rover details
+     * @param roverName A mutable live data object that stores the rover name
      * @param roverPhotos A mutable live data object that stores the latest photos form the rover
      */
     private fun getRoverLatest(

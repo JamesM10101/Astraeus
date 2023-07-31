@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 import com.jamesm10101.astraeus.R
 import java.lang.Exception
 
-class MarsRoverPhotoViewModel() : ViewModel() {
+class MarsRoverPhotoViewModel : ViewModel() {
 
     lateinit var resources: Resources
 

@@ -29,6 +29,14 @@ class ApodExploreViewModel : ViewModel() {
         loadApodImages(null)
     }
 
+    /**
+     * Calls getApodByDateRange and adds the contents to the apod image list
+     *
+     * @see [com.jamesm10101.astraeus.apis.PlanetaryAPIService.getApodByDateRange]
+     *
+     * @param callback a callback function that executes when the api call
+     * and all related executions have finished
+     */
     fun loadApodImages(callback: (() -> Unit)?) {
         viewModelScope.launch {
             try {
