@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.adapter.RecyclerItemTouchListener
+import com.jamesm10101.astraeus.data.ExploreSuggestionEnums
 import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.ExploreSuggestionItems
 import com.jamesm10101.astraeus.databinding.FragmentExploreBinding
@@ -46,7 +47,16 @@ class ExploreFragment : MainBaseFragment() {
                     val exploreItem: ExploreSuggestionItem = exploreItems[position]
 
                     try {
-                        // TODO -- Switch Fragment
+                        when (exploreItem.type) {
+                            ExploreSuggestionEnums.APOD -> {
+                                parentFragmentManager.beginTransaction()
+                                    .replace(R.id.main_fragment, ApodExploreFragment())
+                                    .addToBackStack("apodCollection").commit()
+                            }
+
+                            ExploreSuggestionEnums.ROVER -> {}
+                            ExploreSuggestionEnums.SEARCH -> {}
+                        }
                     } catch (e: Exception) {
                         Toast.makeText(
                             requireContext(),

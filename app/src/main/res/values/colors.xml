@@ -23,4 +23,7 @@
     <color name="inactiveRoverText">#00C000</color>
     <color name="activeRoverText">#FF0000</color>
 
+    <!--  Apod Colors  -->
+    <color name="apodBlue">#11213F</color>
+
 </resources>

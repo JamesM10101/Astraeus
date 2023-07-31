@@ -22,4 +22,17 @@
         <item name="android:color">@color/nasaBlue</item>
     </style>
 
+    <style name="ExploreCardView" parent="@style/Widget.Material3.CardView.Outlined">
+        <item name="shapeAppearanceOverlay">@style/Astraeus.ExploreCardView.Outlined</item>
+    </style>
+
+    <style name="Astraeus.ExploreCardView.Outlined" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+
 </resources>

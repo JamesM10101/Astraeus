@@ -21,6 +21,7 @@
     <string name="apod_header">Astronomy Picture of the Day</string>
     <string name="apod_image">APOD Image</string>
     <string name="apod_video">APOD video</string>
+    <string name="apod_blurb">Discover the cosmos! Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer. Astronomy Picture of the Day (APOD) is provided by NASA and the Michigan Technological University (MTU).</string>
 
     <!--  Rover  -->
     <string name="rover_photos">Rover photos</string>
