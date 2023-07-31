@@ -28,6 +28,13 @@ interface PlanetaryAPIService {
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): APOD
 
+    @GET("apod")
+    suspend fun getApodByDateRange(
+        @Query("start_date") startDate: String,
+        @Query("end_date") endDate: String,
+        @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
+    ): List<APOD>
+
     @GET("apod?count=1")
     suspend fun getRandomApod(
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
