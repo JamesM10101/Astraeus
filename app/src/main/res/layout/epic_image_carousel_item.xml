@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,7 +12,8 @@
 
     <com.google.android.material.carousel.MaskableFrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:background="@color/nasaBlue">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_APOD_imgWrapper"
@@ -26,6 +28,7 @@
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:adjustViewBounds="true"
+                android:contentDescription="@{`Epic image ` + photo.id}"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{photo.imgSrcUrl}" />
 

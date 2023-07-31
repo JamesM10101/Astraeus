@@ -28,6 +28,7 @@
                 android:layout_height="130dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
+                android:contentDescription="@{`Rover image ` + photo.id}"
                 app:imageUrl="@{photo.imgSrcUrl}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
