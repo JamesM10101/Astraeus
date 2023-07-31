@@ -23,14 +23,16 @@ class MarsRoverPhotoFragment : MainBaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentMarsRoverPhotoBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        binding.roverPhoto = requireArguments().getParcelable("marsRoverPhoto")
         binding.mainViewModel = mainViewModel
         binding.viewModel = viewModel
         viewModel.resources = resources
 
+        @Suppress("DEPRECATION")
+        binding.roverPhoto = requireArguments().getParcelable("marsRoverPhoto")
+        
         return binding.root
     }
 

@@ -22,7 +22,7 @@ class ExploreFragment : MainBaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentExploreBinding.inflate(inflater)
 
         exploreItems = ExploreSuggestionItems().getItems(requireContext())

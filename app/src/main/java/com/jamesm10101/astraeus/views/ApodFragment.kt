@@ -25,7 +25,8 @@ class ApodFragment : MainBaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        @Suppress("DEPRECATION")
         val apod: APOD? = arguments?.getParcelable("apod")
 
         val binding = FragmentApodBinding.inflate(inflater)

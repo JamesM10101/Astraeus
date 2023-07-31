@@ -24,12 +24,14 @@ class EpicPhotoFragment : MainBaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentEpicPhotoBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        binding.epicPhoto = requireArguments().getParcelable("epicPhoto")
         binding.viewModel = viewModel
         binding.mainViewModel = mainViewModel
+
+        @Suppress("DEPRECATION")
+        binding.epicPhoto = requireArguments().getParcelable("epicPhoto")
 
         return binding.root
     }
