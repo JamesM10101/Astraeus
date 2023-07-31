@@ -7,9 +7,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.jamesm10101.astraeus.R
+import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
+
+val apodExploreAdapter = ApodExploreCarouselAdapter()
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -18,9 +21,12 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
         imgView.load(imgUri) {
             placeholder(R.drawable.moon_phases)
             error(R.drawable.ic_broken_image)
-            listener(
-                onError = { _, error -> Log.d("coil error", error.throwable.message.toString()) }
-            )
+            listener(onError = { _, error ->
+                Log.d(
+                    "coil error",
+                    error.throwable.message.toString()
+                )
+            })
         }
     }
 }
@@ -43,5 +49,13 @@ fun bindRecyclerViewEpic(recyclerView: RecyclerView, data: List<Epic>?) {
 fun bindRecyclerViewExplore(recyclerView: RecyclerView, data: List<ExploreSuggestionItem>?) {
     recyclerView.adapter = ExploreCarouselAdapter()
     val adapter = recyclerView.adapter as ExploreCarouselAdapter
+    adapter.submitList(data)
+}
+
+
+@BindingAdapter("apodExploreListData")
+fun bindRecyclerViewApodExplore(recyclerView: RecyclerView, data: List<APOD>?) {
+    val adapter = ApodExploreCarouselAdapter()
+    recyclerView.adapter = adapter
     adapter.submitList(data)
 }
