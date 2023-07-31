@@ -8,19 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.databinding.ExploreSuggestionItemBinding
 
-class ExploreCarouselAdapter : ListAdapter<ExploreSuggestionItem,
-        ExploreCarouselAdapter.ExplorePhotoViewHolder>(DiffCallback) {
+class ExploreCarouselAdapter :
+    ListAdapter<ExploreSuggestionItem, ExploreCarouselAdapter.ExplorePhotoViewHolder>(DiffCallback) {
     companion object DiffCallback : DiffUtil.ItemCallback<ExploreSuggestionItem>() {
         override fun areItemsTheSame(
-            oldItem: ExploreSuggestionItem,
-            newItem: ExploreSuggestionItem
+            oldItem: ExploreSuggestionItem, newItem: ExploreSuggestionItem
         ): Boolean {
             return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(
-            oldItem: ExploreSuggestionItem,
-            newItem: ExploreSuggestionItem
+            oldItem: ExploreSuggestionItem, newItem: ExploreSuggestionItem
         ): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
@@ -35,9 +33,8 @@ class ExploreCarouselAdapter : ListAdapter<ExploreSuggestionItem,
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ExploreCarouselAdapter.ExplorePhotoViewHolder {
+        parent: ViewGroup, viewType: Int
+    ): ExplorePhotoViewHolder {
         return ExplorePhotoViewHolder(
             ExploreSuggestionItemBinding.inflate(
                 LayoutInflater.from(parent.context)
@@ -46,8 +43,7 @@ class ExploreCarouselAdapter : ListAdapter<ExploreSuggestionItem,
     }
 
     override fun onBindViewHolder(
-        holder: ExploreCarouselAdapter.ExplorePhotoViewHolder,
-        position: Int
+        holder: ExplorePhotoViewHolder, position: Int
     ) {
         val explorePhoto = getItem(position)
         holder.bind(explorePhoto)

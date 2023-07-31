@@ -12,8 +12,6 @@ import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
 
-val apodExploreAdapter = ApodExploreCarouselAdapter()
-
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
@@ -22,9 +20,8 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             placeholder(R.drawable.moon_phases)
             error(R.drawable.ic_broken_image)
             listener(onError = { _, error ->
-                Log.d(
-                    "coil error",
-                    error.throwable.message.toString()
+                Log.e(
+                    "coil error", error.throwable.message.toString()
                 )
             })
         }
@@ -51,7 +48,6 @@ fun bindRecyclerViewExplore(recyclerView: RecyclerView, data: List<ExploreSugges
     val adapter = recyclerView.adapter as ExploreCarouselAdapter
     adapter.submitList(data)
 }
-
 
 @BindingAdapter("apodExploreListData")
 fun bindRecyclerViewApodExplore(recyclerView: RecyclerView, data: List<APOD>?) {

@@ -30,7 +30,7 @@ class ApodExploreCarouselAdapter :
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
-    ): ApodExploreCarouselAdapter.ApodExplorePhotoViewHolder {
+    ): ApodExplorePhotoViewHolder {
         return ApodExplorePhotoViewHolder(
             ApodExploreItemBinding.inflate(
                 LayoutInflater.from(parent.context)
@@ -39,7 +39,7 @@ class ApodExploreCarouselAdapter :
     }
 
     override fun onBindViewHolder(
-        holder: ApodExploreCarouselAdapter.ApodExplorePhotoViewHolder, position: Int
+        holder: ApodExplorePhotoViewHolder, position: Int
     ) {
         val apod = getItem(position)
         holder.bind(apod)

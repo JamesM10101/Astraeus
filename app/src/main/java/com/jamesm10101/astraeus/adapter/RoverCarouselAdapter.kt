@@ -23,8 +23,8 @@ class RoverCarouselAdapter : ListAdapter<MarsRoverPhoto,
 
     class RoverPhotoViewHolder(private var binding: RoverImageCarouselItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(MarsPhoto: MarsRoverPhoto) {
-            binding.photo = MarsPhoto
+        fun bind(marsRoverPhoto: MarsRoverPhoto) {
+            binding.photo = marsRoverPhoto
             binding.executePendingBindings()
         }
     }
@@ -32,7 +32,7 @@ class RoverCarouselAdapter : ListAdapter<MarsRoverPhoto,
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RoverCarouselAdapter.RoverPhotoViewHolder {
+    ): RoverPhotoViewHolder {
         return RoverPhotoViewHolder(
             RoverImageCarouselItemBinding.inflate(
                 LayoutInflater.from(parent.context)
@@ -41,7 +41,7 @@ class RoverCarouselAdapter : ListAdapter<MarsRoverPhoto,
     }
 
     override fun onBindViewHolder(
-        holder: RoverCarouselAdapter.RoverPhotoViewHolder,
+        holder: RoverPhotoViewHolder,
         position: Int
     ) {
         val marsPhoto = getItem(position)

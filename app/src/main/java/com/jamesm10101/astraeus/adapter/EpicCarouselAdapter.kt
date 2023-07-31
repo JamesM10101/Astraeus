@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.databinding.EpicImageCarouselItemBinding
 
-class EpicCarouselAdapter : ListAdapter<Epic,
-        EpicCarouselAdapter.EpicPhotoViewHolder>(DiffCallback) {
+class EpicCarouselAdapter :
+    ListAdapter<Epic, EpicCarouselAdapter.EpicPhotoViewHolder>(DiffCallback) {
     companion object DiffCallback : DiffUtil.ItemCallback<Epic>() {
         override fun areItemsTheSame(oldItem: Epic, newItem: Epic): Boolean {
             return oldItem.id == newItem.id
@@ -29,9 +29,8 @@ class EpicCarouselAdapter : ListAdapter<Epic,
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): EpicCarouselAdapter.EpicPhotoViewHolder {
+        parent: ViewGroup, viewType: Int
+    ): EpicPhotoViewHolder {
         return EpicPhotoViewHolder(
             EpicImageCarouselItemBinding.inflate(
                 LayoutInflater.from(parent.context)
@@ -40,8 +39,7 @@ class EpicCarouselAdapter : ListAdapter<Epic,
     }
 
     override fun onBindViewHolder(
-        holder: EpicCarouselAdapter.EpicPhotoViewHolder,
-        position: Int
+        holder: EpicPhotoViewHolder, position: Int
     ) {
         val epicPhoto = getItem(position)
         holder.bind(epicPhoto)
