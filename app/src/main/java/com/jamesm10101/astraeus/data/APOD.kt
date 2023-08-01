@@ -6,8 +6,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class APOD(
-    @Json(name = "url") val imgSrcUrl: String,
-    @Json(name = "hdurl") val imgSrcHDUrl: String,
+    @Json(name = "url") val mediaSrcUrl: String,
+    @Json(name = "hdurl") val imgSrcHDUrl: String?,
+    @Json(name = "thumbnail_url") val thumbUrl: String?,
     @Json(name = "date") val date: String,
     @Json(name = "title") val title: String,
     @Json(name = "copyright") val copyright: String?,

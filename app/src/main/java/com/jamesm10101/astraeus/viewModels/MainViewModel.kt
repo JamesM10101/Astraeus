@@ -51,8 +51,9 @@ class MainViewModel : ViewModel() {
                 val copyright = res.copyright?.replace("\n", "")
 
                 apodResult.value = APOD(
-                    imgSrcUrl = res.imgSrcUrl,
+                    mediaSrcUrl = res.mediaSrcUrl,
                     imgSrcHDUrl = res.imgSrcHDUrl,
+                    thumbUrl = res.thumbUrl,
                     copyright = copyright,
                     date = res.date,
                     mediaType = res.mediaType,

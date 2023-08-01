@@ -24,7 +24,7 @@
 
             <ImageView
                 android:id="@+id/imgV_thumb"
-                imageUrl="@{apod.imgSrcUrl != null ? apod.imgSrcUrl : apod.imgSrcHDUrl}"
+                imageUrl="@{apod.mediaType.equals(`video`) ? apod.thumbUrl : apod.mediaSrcUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:contentDescription="@{apod.title}"
