@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/apod_image"
             android:scaleType="centerCrop"
-            app:imageUrl="@{apod.mediaSrcUrl}" />
+            app:imageUrl="@{apod.thumbUrl != null ? apod.thumbUrl : apod.mediaSrcUrl}" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
