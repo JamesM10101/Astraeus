@@ -29,10 +29,10 @@
 
         <include
             layout="@layout/touch_image_full"
-            app:photoUrl="@{apodResult.imgSrcUrl}"
+            app:photoUrl="@{apodResult.mediaType.equals(`video`) ? apodResult.thumbUrl : apodResult.imgSrcHDUrl}"
             app:showImage="@{mainViewModel.showTouchImage}"
             app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -46,24 +46,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imgV_APOD_HD"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_apodMediaWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/apod_image"
-                    android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
-                    android:scaleType="fitCenter"
-                    app:imageUrl="@{apodResult.imgSrcHDUrl}"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/backgrounds/scenic" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                        android:id="@+id/ytp_apod"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_gravity="top"
+                        android:visibility="@{apodResult.mediaType.equals(`video`) ? View.VISIBLE : View.GONE}"
+                        app:autoPlay="false"
+                        app:enableAutomaticInitialization="false"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imgV_APOD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/apod_image"
+                        android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
+                        android:scaleType="fitCenter"
+                        android:visibility="@{apodResult.mediaType.equals(`video`) ? View.GONE : View.VISIBLE}"
+                        app:imageUrl="@{apodResult.mediaType.equals(`video`) ? apodResult.thumbUrl : apodResult.mediaSrcUrl}"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@tools:sample/backgrounds/scenic" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="8dp"
-                    app:layout_constraintTop_toBottomOf="@id/imgV_APOD_HD">
+                    app:layout_constraintTop_toBottomOf="@id/constraint_apodMediaWrapper">
 
                     <TextView
                         android:id="@+id/txtV_title"
