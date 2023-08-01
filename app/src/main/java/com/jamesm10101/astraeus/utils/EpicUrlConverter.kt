@@ -3,6 +3,14 @@ package com.jamesm10101.astraeus.utils
 import com.jamesm10101.astraeus.data.EpicCollection
 import com.jamesm10101.astraeus.data.EpicImageType
 
+/**
+ * Converts an epic image string into the image host url
+ *
+ * @param image the epic image string to convert
+ * @param collection the collection type to retrieve
+ * @param imgType the file extension of the image
+ * @return the url of the image host in string form
+ */
 fun epicImageConverter(image: String, collection: EpicCollection, imgType: EpicImageType): String {
 
     lateinit var year: String
