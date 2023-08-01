@@ -20,11 +20,15 @@ private val retrofit = Retrofit.Builder()
 
 interface PlanetaryAPIService {
     @GET("apod")
-    suspend fun getCurrentApod(@Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY): APOD
+    suspend fun getCurrentApod(
+        @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY,
+        @Query("thumbs") thumbs: Boolean = true,
+    ): APOD
 
     @GET("apod")
     suspend fun getApodByDate(
         @Query("date") date: String,
+        @Query("thumbs") thumbs: Boolean = true,
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): APOD
 
@@ -32,17 +36,20 @@ interface PlanetaryAPIService {
     suspend fun getApodByDateRange(
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
+        @Query("thumbs") thumbs: Boolean = true,
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): List<APOD>
 
     @GET("apod?count=1")
     suspend fun getRandomApod(
+        @Query("thumbs") thumbs: Boolean = true,
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): List<APOD>
 
     @GET("apod")
     suspend fun getRandomApod(
         @Query("count") count: Int,
+        @Query("thumbs") thumbs: Boolean = true,
         @Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY
     ): List<APOD>
 }
