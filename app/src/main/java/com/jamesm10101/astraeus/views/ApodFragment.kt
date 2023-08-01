@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.databinding.FragmentApodBinding
+import com.jamesm10101.astraeus.utils.getApodUrlEmbed
 import com.jamesm10101.astraeus.viewModels.ApodViewModel
 import com.jamesm10101.astraeus.viewModels.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -65,7 +66,7 @@ class ApodFragment : MainBaseFragment() {
         youTubePlayerView.initialize(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 try {
-                    val videoId = apod?.mediaSrcUrl!!.substring(30, 41)
+                    val videoId = getApodUrlEmbed(apod?.mediaSrcUrl!!)
                     youTubePlayer.loadVideo(videoId, 0f)
                 } catch (e: Exception) {
                     Log.d("apodVideoLoad", e.message.toString())
