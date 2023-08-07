@@ -51,17 +51,11 @@ class ApodExploreFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    val oldSize: Int = viewModel.apodImages.value?.size!!
-                    val newSize: Int = oldSize.plus(7)
-
-                    val state = layoutManager.onSaveInstanceState()
-
-                    viewModel.loadApodImages {
+                    viewModel.loadApodImages() {
                         // keep scrolled position
-                        recyclerView.adapter?.notifyItemRangeInserted(oldSize, newSize)
+                        val state = layoutManager.onSaveInstanceState()
                         layoutManager.onRestoreInstanceState(state)
                     }
-
                 }
             }
         }

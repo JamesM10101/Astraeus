@@ -11,6 +11,7 @@ import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
+import java.lang.Exception
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -51,7 +52,18 @@ fun bindRecyclerViewExplore(recyclerView: RecyclerView, data: List<ExploreSugges
 
 @BindingAdapter("apodExploreListData")
 fun bindRecyclerViewApodExplore(recyclerView: RecyclerView, data: List<APOD>?) {
-    val adapter = ApodExploreCarouselAdapter()
-    recyclerView.adapter = adapter
-    adapter.submitList(data)
+    try {
+        val adapter = ApodExploreCarouselAdapter()
+        val currApodList = adapter.currentList
+
+        recyclerView.adapter = adapter
+        adapter.submitList(data)
+
+        if (currApodList.isNotEmpty()) {
+            adapter.notifyItemRangeChanged(currApodList.size - 1, data!!.size - 1)
+        }
+
+    } catch (e: Exception) {
+        Log.d("bindApodExplore", e.message.toString())
+    }
 }
