@@ -67,3 +67,21 @@ fun bindRecyclerViewApodExplore(recyclerView: RecyclerView, data: List<APOD>?) {
         Log.d("bindApodExplore", e.message.toString())
     }
 }
+
+@BindingAdapter("marsRoverExploreListData")
+fun bindMarsRoverExplore(recyclerView: RecyclerView, data: List<MarsRoverPhoto>?) {
+    try {
+        val adapter = MarsRoverExploreAdapter()
+        val currList = adapter.currentList
+
+        recyclerView.adapter = adapter
+        adapter.submitList(data)
+
+        if (currList.isNotEmpty()) {
+            adapter.notifyItemRangeChanged(currList.size - 1, data!!.size - 1)
+        }
+
+    } catch (e: Exception) {
+        Log.d("bindMarsRoverExplore", e.message.toString())
+    }
+}
