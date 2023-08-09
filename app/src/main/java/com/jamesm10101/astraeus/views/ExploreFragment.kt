@@ -54,7 +54,15 @@ class ExploreFragment : MainBaseFragment() {
                                     .addToBackStack("apodCollection").commit()
                             }
 
-                            ExploreSuggestionEnums.ROVER -> {}
+                            ExploreSuggestionEnums.ROVER -> {
+                                parentFragmentManager.beginTransaction()
+                                    .replace(
+                                        R.id.main_fragment,
+                                        MarsRoverExploreFragment.newInstance(exploreItem.name)
+                                    )
+                                    .addToBackStack("roverCollection").commit()
+                            }
+
                             ExploreSuggestionEnums.SEARCH -> {}
                         }
                     } catch (e: Exception) {
