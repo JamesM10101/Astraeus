@@ -1,16 +1,21 @@
 package com.jamesm10101.astraeus.adapter
 
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.data.ExploreSuggestionItem
+import com.jamesm10101.astraeus.data.MarsRoverCam
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
+import com.jamesm10101.astraeus.databinding.MarsRoverCamsChipBinding
 import java.lang.Exception
 
 @BindingAdapter("imageUrl")
@@ -83,5 +88,41 @@ fun bindMarsRoverExplore(recyclerView: RecyclerView, data: List<MarsRoverPhoto>?
 
     } catch (e: Exception) {
         Log.d("bindMarsRoverExplore", e.message.toString())
+    }
+}
+
+@BindingAdapter("marsRoverCamsChipListData")
+fun bindMarsRoverCamsChip(chipGroup: ChipGroup, data: List<MarsRoverCam>?) {
+    try {
+        if (!data.isNullOrEmpty()) {
+            chipGroup.removeAllViews()
+
+            val context = chipGroup.context
+            val inflater = LayoutInflater.from(context)
+
+            // All images chip
+            val allChip = MarsRoverCamsChipBinding.inflate(inflater, chipGroup, false)
+            allChip.camName = context.getString(R.string.all)
+            (allChip.root as Chip).isChecked = true
+            chipGroup.addView(allChip.root)
+
+            // add chips to the group
+            for (cam in data) {
+                val chip = MarsRoverCamsChipBinding.inflate(inflater, chipGroup, false)
+                chip.camName = cam.name
+                chipGroup.addView(chip.root)
+            }
+        }
+    } catch (e: Exception) {
+        Log.e("bindMarsRoverCamsChip", e.message.toString())
+    }
+}
+
+@BindingAdapter("onCheckedChanged")
+fun bindOnCheckChanged(chipGroup: ChipGroup, listener: ChipGroup.OnCheckedStateChangeListener) {
+    try {
+        chipGroup.setOnCheckedStateChangeListener(listener)
+    } catch (e: Exception) {
+        Log.e("bindOnCheckedChanged", e.message.toString())
     }
 }

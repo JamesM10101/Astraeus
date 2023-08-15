@@ -13,6 +13,7 @@
     <string name="placeholder_lat_long">28.573469, -80.651070</string>
     <string name="placeholder_label">Label:</string>
     <string name="placeholder_title">Title</string>
+    <string name="under_construction">Under Construction</string>
 
     <!--  Labels  -->
     <string name="view_image_info">View Image Info</string>
@@ -54,5 +55,9 @@
 
     <!--  Search  -->
     <string name="search_here">Search Here</string>
+    <string name="see_rover_info">See rover info</string>
+
+    <!--  Filters  -->
+    <string name="all">All</string>
 
 </resources>

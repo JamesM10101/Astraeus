@@ -1,23 +1,35 @@
 package com.jamesm10101.astraeus.viewModels
 
+import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import com.jamesm10101.astraeus.R
+import com.jamesm10101.astraeus.adapter.RecyclerItemTouchListener
 import com.jamesm10101.astraeus.apis.MarsRoverAPI
 import com.jamesm10101.astraeus.data.MarsRover
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
+import com.jamesm10101.astraeus.views.MarsRoverPhotoFragment
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MarsRoverExploreViewModel : ViewModel() {
 
-    private lateinit var roverName: String
+    lateinit var roverName: String
     private var loads: Int = 0
 
     private val _roverDetails = MutableLiveData<MarsRover>()
     private val _roverPhotos = MutableLiveData<List<MarsRoverPhoto>>()
+    private val _roverCam = MutableLiveData<String>("")
 
     // accessors
     val roverDetails: LiveData<MarsRover> = _roverDetails
@@ -32,7 +44,6 @@ class MarsRoverExploreViewModel : ViewModel() {
     fun initialize(name: String) {
         roverName = name
         getMarsRoverDetails()
-        loadMarsRoverImages(null)
     }
 
     /**
@@ -46,10 +57,24 @@ class MarsRoverExploreViewModel : ViewModel() {
     fun loadMarsRoverImages(callback: (() -> Unit)?) {
         viewModelScope.launch {
             try {
-                // load in photos
-                val photoList = MarsRoverAPI.retrofitService.getRoverPhotosSol(
-                    roverName, sol = _roverDetails.value!!.maxSol - loads
-                ).photos.reversed()
+                // load in photos -- use cam if filtered
+                val photoList =
+                    when (_roverCam.value.isNullOrEmpty()) {
+                        true -> {
+                            MarsRoverAPI.retrofitService.getRoverPhotosSol(
+                                roverName, sol = _roverDetails.value!!.maxSol - loads
+                            ).photos.reversed()
+                        }
+
+                        false -> {
+                            MarsRoverAPI.retrofitService.getRoverPhotosSol(
+                                roverName,
+                                sol = _roverDetails.value!!.maxSol - loads,
+                                camera = _roverCam.value.toString()
+                            ).photos.reversed()
+                        }
+
+                    }
 
                 // add photos to the list
                 if (_roverPhotos.value == null) {
@@ -60,11 +85,15 @@ class MarsRoverExploreViewModel : ViewModel() {
 
                 loads++
 
-                if (callback != null) {
+                // ensure images are loaded in before callback
+                if (photoList.isEmpty()) {
+                    loadMarsRoverImages(callback)
+                } else if (callback != null) {
                     callback()
                 }
+
             } catch (e: Exception) {
-                Log.d("marsRoverPhotos", e.message.toString())
+                Log.e("marsRoverPhotos", e.message.toString())
             }
         }
     }
@@ -78,10 +107,111 @@ class MarsRoverExploreViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _roverDetails.value = MarsRoverAPI.retrofitService.getRoverDetails(roverName).rover
+                loadMarsRoverImages {}
             } catch (e: Exception) {
                 Log.d("marsRoverDetails", e.message.toString())
             }
         }
+    }
+
+    /**
+     * Filters and loads in new rover images based on the checked chip
+     *
+     * @return the OnCheckedStateListener
+     */
+    fun camsCheckedChangedListener(): ChipGroup.OnCheckedStateChangeListener {
+        return ChipGroup.OnCheckedStateChangeListener { group, _ ->
+
+            // set the roverCam based on selected chip
+            if (group.checkedChipId != -1) {
+                val checked = group.findViewById<Chip>(group.checkedChipId)
+
+                if (checked.text.toString() == "All") { // All text will break request
+                    _roverCam.value = ""
+                } else {
+                    _roverCam.value = checked.text.toString()
+                }
+            } else {
+                _roverCam.value = ""
+            }
+
+            // reset vars and load in more images
+            loads = 0
+            _roverPhotos.value = emptyList()
+            loadMarsRoverImages { }
+        }
+    }
+
+    /**
+     * Loads in the rover photos when the bottom of the recycler view is reached
+     *
+     * @param recyclerView the recycler view to listen to
+     * @return the OnScrollListener
+     */
+    fun onRoverExploreScrollListener(recyclerView: RecyclerView): RecyclerView.OnScrollListener {
+        val context = recyclerView.context
+        val layoutManager =
+            GridLayoutManager(context, context.resources.getInteger(R.integer.exploreRecyclerSpan))
+        recyclerView.layoutManager = layoutManager
+
+        return object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    loadMarsRoverImages {
+                        // keep scrolled position
+                        val state = layoutManager.onSaveInstanceState()
+                        layoutManager.onRestoreInstanceState(state)
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Listens for clicks on the recycler view's items and navigates to the MarsRoverPhotoFragment
+     *
+     * @see MarsRoverPhotoFragment
+     *
+     * @param recyclerView the recycler view to listen to clicks on
+     * @return the RecyclerItemTouchListener
+     */
+    fun onMarsRoverExploreItemClick(
+        recyclerView: RecyclerView, fragmentManager: FragmentManager
+    ): RecyclerItemTouchListener {
+        val context = recyclerView.context
+
+        // switch to apod fragment
+        return RecyclerItemTouchListener(
+            context,
+            recyclerView,
+            object : RecyclerItemTouchListener.ClickListener {
+                override fun onClick(view: View?, position: Int) {
+                    val roverPhoto: MarsRoverPhoto = _roverPhotos.value!![position]
+
+                    try {
+                        val bundle = Bundle()
+                        bundle.putParcelable("marsRoverPhoto", roverPhoto)
+
+                        val fragment = MarsRoverPhotoFragment()
+                        fragment.arguments = bundle
+
+                        fragmentManager.beginTransaction()
+                            .replace(R.id.main_fragment, fragment)
+                            .addToBackStack(roverPhoto.id.toString())
+                            .commit()
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            context, "Could not open image details", Toast.LENGTH_SHORT
+                        ).show()
+                        Log.e("ApodExploreDetails", e.message.toString())
+                    }
+
+                }
+
+                override fun onLongClick(view: View?, position: Int) {}
+            })
     }
 
 }

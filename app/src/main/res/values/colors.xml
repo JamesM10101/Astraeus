@@ -10,6 +10,8 @@
 
     <!--  Custom Colors  -->
     <color name="offWhite">#F5F5F5</color>
+    <color name="lightGray">#4D4D4D</color>
+    <color name="darkGray">#1D1D1D</color>
 
     <!--  Nasa Colors  -->
     <color name="nasaRed">#FC3D21</color>
@@ -18,6 +20,7 @@
     <color name="nasaRedDarkVariant">#C5311B</color>
     <color name="nasaBlueDarkVariant">#07285F</color>
     <color name="nasaBlueLightVariant">#1557C7</color>
+    <color name="nasaBlueLighterVariant">#1A69EF</color>
 
     <!--  Rover Status Text Colors -->
     <color name="inactiveRoverText">#00C000</color>
@@ -25,5 +28,8 @@
 
     <!--  Apod Colors  -->
     <color name="apodBlue">#11213F</color>
+
+    <!--  Mars Colors  -->
+    <color name="martian_orange">#b55e38</color>
 
 </resources>
