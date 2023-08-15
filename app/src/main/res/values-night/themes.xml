@@ -34,4 +34,11 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
+    <style name="RoverCamFilterChip" parent="@style/Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/rover_cam_filter_chip_bg_state_list</item>
+        <item name="android:textColor">@color/rover_cam_filter_tc_state_list</item>
+        <item name="checkedIconTint">@color/offWhite</item>
+        <item name="chipStrokeWidth">1dp</item>
+    </style>
+
 </resources>
