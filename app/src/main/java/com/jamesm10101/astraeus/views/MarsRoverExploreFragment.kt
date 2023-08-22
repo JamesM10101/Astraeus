@@ -12,7 +12,6 @@ import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.databinding.FragmentMarsRoverExploreBinding
 import com.jamesm10101.astraeus.viewModels.MarsRoverExploreViewModel
 
-
 private const val ARG_ROVER_NAME = "roverName"
 
 class MarsRoverExploreFragment : Fragment() {
@@ -42,6 +41,7 @@ class MarsRoverExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // set the scroll and item touch listeners
         val cycRoverPhotos = view.findViewById<RecyclerView>(R.id.cycV_roverPhotos)
         cycRoverPhotos.addOnScrollListener(viewModel.onRoverExploreScrollListener(cycRoverPhotos))
         cycRoverPhotos.addOnItemTouchListener(
@@ -51,11 +51,17 @@ class MarsRoverExploreFragment : Fragment() {
             )
         )
 
+        // set the onClick listener
         val btnRoverDetails = view.findViewById<MaterialButton>(R.id.btn_seeRoverDetails)
         btnRoverDetails.setOnClickListener {
-            // TODO -- Change Target Fragment
+            val bundle = Bundle()
+            bundle.putParcelable("roverDetails", viewModel.roverDetails.value)
+
+            val fragment = MarsRoverInfoFragment()
+            fragment.arguments = bundle
+
             parentFragmentManager.beginTransaction()
-                .replace(R.id.main_fragment, ConstructionFragment())
+                .replace(R.id.main_fragment, fragment)
                 .addToBackStack(null).commit()
         }
     }
