@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="roverDetails"
+            type="com.jamesm10101.astraeus.data.MarsRover" />
+    </data>
+
+    <HorizontalScrollView
+        android:id="@+id/horzScroll_chips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipG_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/RoverDetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:text="@{roverDetails.status.equals(`active`) ? `Active` : `Complete`}"
+                app:chipIcon="@drawable/ic_access_time"
+                tools:text="@string/placeholder_title" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/RoverDetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:text="@{String.format(&quot;%,d&quot;, roverDetails.totalPhotos)}"
+                app:chipIcon="@drawable/ic_image"
+                tools:text="@string/placeholder_number" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/RoverDetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:text="@{roverDetails.maxDate.toString()}"
+                app:chipIcon="@drawable/ic_cell_tower"
+                tools:text="@string/placeholder_date" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/RoverDetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:drawablePadding="5dp"
+                android:text="@{roverDetails.launchDate.toString()}"
+                app:chipIcon="@drawable/ic_north_east"
+                tools:text="@string/placeholder_date" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/RoverDetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:text="@{roverDetails.landingDate.toString()}"
+                app:chipIcon="@drawable/ic_south_east"
+                tools:text="@string/placeholder_date" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+</layout>
