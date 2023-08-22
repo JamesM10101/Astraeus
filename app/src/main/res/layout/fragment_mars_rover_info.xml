@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="roverDetails"
+            type="com.jamesm10101.astraeus.data.MarsRover" />
+
+        <variable
+            name="marsRoverSpecs"
+            type="com.jamesm10101.astraeus.data.MarsRoverSpecs" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/offWhite"
+            android:paddingHorizontal="10dp"
+            tools:context=".views.MarsRoverInfoFragment">
+
+            <TextView
+                android:id="@+id/txtV_roverLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="2"
+                android:text="@{roverDetails.name}"
+                android:textAllCaps="true"
+                android:textColor="@color/nasaBlue"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Perseverance" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/txtV_roverLabel">
+
+                <ImageView
+                    android:id="@+id/imgV_detailedRoverImage"
+                    imageUrl="@{marsRoverSpecs.detailedImage}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/rover_image"
+                    tools:src="@drawable/thumb_rover_curiosity" />
+
+            </androidx.cardview.widget.CardView>
+
+            <include
+                android:id="@+id/layout_roverDetailsChips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:roverDetails="@{roverDetails}"
+                layout="@layout/mars_rover_details_chips"
+                app:layout_constraintTop_toBottomOf="@id/card_img" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_roverDetailsChips">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:contentDescription="@string/rover_instruments"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:marsRoverInstruments="@{marsRoverSpecs.instruments}"
+                    tools:listitem="@layout/mars_rover_instrument_details_component" />
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

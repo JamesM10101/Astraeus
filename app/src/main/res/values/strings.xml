@@ -59,5 +59,6 @@
 
     <!--  Filters  -->
     <string name="all">All</string>
+    <string name="rover_instruments">Rover Instruments</string>
 
 </resources>

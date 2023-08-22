@@ -14,9 +14,10 @@ import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.MarsRoverCam
+import com.jamesm10101.astraeus.data.MarsRoverInstrument
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
 import com.jamesm10101.astraeus.databinding.MarsRoverCamsChipBinding
-import java.lang.Exception
+import kotlin.Exception
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -124,5 +125,19 @@ fun bindOnCheckChanged(chipGroup: ChipGroup, listener: ChipGroup.OnCheckedStateC
         chipGroup.setOnCheckedStateChangeListener(listener)
     } catch (e: Exception) {
         Log.e("bindOnCheckedChanged", e.message.toString())
+    }
+}
+
+@BindingAdapter("marsRoverInstruments")
+fun bindMarsRoverInstrument(
+    recyclerView: RecyclerView,
+    data: List<MarsRoverInstrument>
+) {
+    try {
+        recyclerView.adapter = MarsRoverInstrumentsListAdapter()
+        val adapter = recyclerView.adapter as MarsRoverInstrumentsListAdapter
+        adapter.submitList(data)
+    } catch (e: Exception) {
+        Log.e("bindMarsRoverInstrument", e.message.toString())
     }
 }
