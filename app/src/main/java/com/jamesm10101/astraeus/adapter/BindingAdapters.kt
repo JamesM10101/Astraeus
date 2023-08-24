@@ -141,3 +141,23 @@ fun bindMarsRoverInstrument(
         Log.e("bindMarsRoverInstrument", e.message.toString())
     }
 }
+
+@BindingAdapter("chipListData")
+fun bindChipListData(chipGroup: ChipGroup, data: List<String>?) {
+    try {
+        if (!data.isNullOrEmpty()) {
+            chipGroup.removeAllViews()
+
+            val context = chipGroup.context
+
+            // add chips to the group
+            for (str in data) {
+                val chip = Chip(context)
+                chip.text = str
+                chipGroup.addView(chip)
+            }
+        }
+    } catch (e: Exception) {
+        Log.e("bindMarsRoverCamsChip", e.message.toString())
+    }
+}
