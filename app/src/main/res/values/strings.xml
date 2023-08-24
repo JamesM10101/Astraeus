@@ -17,6 +17,7 @@
 
     <!--  Labels  -->
     <string name="view_image_info">View Image Info</string>
+    <string name="keywords">Keywords</string>
 
     <!--  Apod  -->
     <string name="apod_header">Astronomy Picture of the Day</string>
@@ -31,6 +32,7 @@
     <string name="landing_date_colon">Landing Date:</string>
     <string name="total_photos_colon">Total Photos:</string>
     <string name="last_response_colon">Last Response:</string>
+    <string name="rover_instruments">Rover Instruments</string>
 
     <!--  Epic  -->
     <string name="epic_earth_photos">Epic Earth Photos</string>
@@ -42,6 +44,7 @@
 
     <!--  Image Details  -->
     <string name="copyright_colon">Copyright:</string>
+    <string name="copyright_owner">Copyright Owner</string>
     <string name="date_colon">Date:</string>
     <string name="sol_colon">Sol:</string>
     <string name="earth_date_colon">Earth Date:</string>
@@ -59,6 +62,5 @@
 
     <!--  Filters  -->
     <string name="all">All</string>
-    <string name="rover_instruments">Rover Instruments</string>
 
 </resources>
