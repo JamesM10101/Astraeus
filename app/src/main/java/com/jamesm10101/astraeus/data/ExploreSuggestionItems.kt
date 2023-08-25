@@ -19,7 +19,7 @@ class ExploreSuggestionItems {
             "thumb" to R.drawable.thumb_apod_logo,
             "type" to ExploreSuggestionEnums.APOD
         ),
-        "Juno Expedition" to mapOf(
+        "Juno" to mapOf(
             "thumb" to R.drawable.thumb_juno,
             "type" to ExploreSuggestionEnums.SEARCH
         ),
