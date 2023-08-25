@@ -2,10 +2,15 @@ package com.jamesm10101.astraeus.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.load
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -16,7 +21,10 @@ import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.MarsRoverCam
 import com.jamesm10101.astraeus.data.MarsRoverInstrument
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
+import com.jamesm10101.astraeus.data.NasaIVLImage
+import com.jamesm10101.astraeus.data.NasaIVLImageCollection
 import com.jamesm10101.astraeus.databinding.MarsRoverCamsChipBinding
+import java.util.Objects
 import kotlin.Exception
 
 @BindingAdapter("imageUrl")
@@ -159,5 +167,45 @@ fun bindChipListData(chipGroup: ChipGroup, data: List<String>?) {
         }
     } catch (e: Exception) {
         Log.e("bindMarsRoverCamsChip", e.message.toString())
+    }
+}
+
+@BindingAdapter("ivlSearchResults")
+fun bindIVLSearchResults(
+    recyclerView: RecyclerView,
+    data: NasaIVLImageCollection?
+) {
+    try {
+        recyclerView.adapter = IVLSearchResultsAdapter()
+        val adapter = recyclerView.adapter as IVLSearchResultsAdapter
+        adapter.submitList(data?.images)
+    } catch (e: Exception) {
+        Log.e("bindIVLSearchResults", e.message.toString())
+    }
+}
+
+@BindingAdapter("ivlSpanCountInt")
+fun bindIVLSpanCountInt(recyclerView: RecyclerView, size: Int) {
+    try {
+        val context = recyclerView.context
+
+        if (size <= 1) {
+            recyclerView.layoutManager = LinearLayoutManager(context)
+        } else {
+            recyclerView.layoutManager =
+                StaggeredGridLayoutManager(size, StaggeredGridLayoutManager.VERTICAL)
+        }
+
+    } catch (e: Exception) {
+        Log.e("ivlSpanCountInt", e.message.toString())
+    }
+}
+
+@BindingAdapter("test:printData")
+fun bindTestPrintData(view: View, data: Any?) {
+    try {
+        Log.d("data", data.toString())
+    } catch (e: Exception) {
+        Log.e("testPrintData", e.message.toString())
     }
 }
