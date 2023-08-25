@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
+import com.jamesm10101.astraeus.R
+import com.jamesm10101.astraeus.adapter.RecyclerItemTouchListener
+import com.jamesm10101.astraeus.data.NasaIVLImageCollection
 import com.jamesm10101.astraeus.databinding.FragmentIvlSearchResultsBinding
 import com.jamesm10101.astraeus.viewModels.IVLSearchResultsViewModel
 
@@ -34,6 +38,40 @@ class IVLSearchResultsFragment : Fragment() {
         param1?.let { viewModel.initialize(it) }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val cycResults = view.findViewById<RecyclerView>(R.id.cycV_searchResults)
+        cycResults.addOnItemTouchListener(onResultsItemClick(cycResults))
+    }
+
+    private fun onResultsItemClick(
+        recyclerView: RecyclerView
+    ): RecyclerItemTouchListener {
+        return RecyclerItemTouchListener(
+            context, recyclerView, object : RecyclerItemTouchListener.ClickListener {
+                override fun onClick(view: View?, position: Int) {
+                    val searchResult: NasaIVLImageCollection = viewModel.searchResults.value!!
+
+                    val bundle = Bundle()
+                    bundle.putParcelable("searchResult", searchResult)
+
+                    val fragment = IVLSearchResultFragment()
+                    fragment.arguments = bundle
+
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.main_fragment, fragment)
+                        .addToBackStack(searchResult.selfUrl)
+                        .commit()
+                }
+
+                override fun onLongClick(view: View?, position: Int) {
+
+                }
+
+            })
     }
 
     companion object {
