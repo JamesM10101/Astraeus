@@ -1,7 +1,10 @@
 package com.jamesm10101.astraeus.data
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class NasaIVLImageData(
     @Json(name = "center") val center: String,
     @Json(name = "title") val title: String,
@@ -14,4 +17,4 @@ data class NasaIVLImageData(
     @Json(name = "date_created") val dateCreated: String,
     @Json(name = "description") val description: String,
     @Json(name = "description_508") val description508: String?,
-)
+) : Parcelable
