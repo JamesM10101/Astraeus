@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="maxPage"
+            type="Integer" />
+
+        <variable
+            name="currPage"
+            type="Integer" />
+
+        <variable
+            name="backClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="forwardClickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="@{currPage != 1}"
+            android:contentDescription="@string/previous_page"
+            android:onClickListener="@{backClickListener}"
+            android:src="@drawable/ic_arrow_head_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:minEms="2"
+            android:text="@{String.valueOf(currPage)}"
+            tools:ignore="LabelFor"
+            tools:text="1" />
+
+        <ImageButton
+            android:id="@+id/btn_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="@{!currPage.equals(maxPage)}"
+            android:contentDescription="@string/next_page"
+            android:onClickListener="@{forwardClickListener}"
+            android:src="@drawable/ic_arrow_head_right" />
+
+    </LinearLayout>
+
+</layout>
