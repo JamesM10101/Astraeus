@@ -63,7 +63,14 @@ class ExploreFragment : MainBaseFragment() {
                                     .addToBackStack("roverCollection").commit()
                             }
 
-                            ExploreSuggestionEnums.SEARCH -> {}
+                            ExploreSuggestionEnums.SEARCH -> {
+                                parentFragmentManager.beginTransaction()
+                                    .replace(
+                                        R.id.main_fragment,
+                                        IVLSearchResultsFragment.newInstance(exploreItem.name.lowercase())
+                                    )
+                                    .addToBackStack("nasaIVLSearch").commit()
+                            }
                         }
                     } catch (e: Exception) {
                         Toast.makeText(
