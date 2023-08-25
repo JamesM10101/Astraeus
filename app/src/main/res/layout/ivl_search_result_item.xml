@@ -9,7 +9,7 @@
 
         <variable
             name="ivlItem"
-            type="com.jamesm10101.astraeus.data.NasaIVLImageData" />
+            type="com.jamesm10101.astraeus.data.NasaIVLImage" />
 
         <variable
             name="showDetails"
@@ -23,7 +23,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/offWhite">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,13 +37,14 @@
                     android:adjustViewBounds="true"
                     android:importantForAccessibility="no"
                     android:scaleType="centerCrop"
+                    app:imageUrl="@{ivlItem.links[0].thumbnail}"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
                 <LinearLayout
-                    android:visibility="@{showDetails ? View.VISIBLE : View.GONE}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{showDetails ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -53,8 +55,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{ivlItem.title}"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text="@{ivlItem.data[0].title}"
                             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                            android:textColor="@color/black"
                             tools:text="@string/placeholder_title" />
 
                         <TextView
@@ -63,9 +68,10 @@
                             android:layout_marginTop="8dp"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:text="@{ivlItem.photographer}"
+                            android:text="@{ivlItem.data[0].photographer != null ? ivlItem.data[0].photographer : ivlItem.data[0].secondaryCreator}"
                             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColor="@color/lightGray"
+                            android:visibility="@{ivlItem.data[0].photographer == null &amp;&amp; ivlItem.data[0].secondaryCreator == null ? View.GONE : View.VISIBLE}"
                             tools:text="@string/copyright_owner" />
 
                         <TextView
@@ -74,9 +80,9 @@
                             android:layout_marginTop="16dp"
                             android:ellipsize="end"
                             android:maxLines="2"
-                            android:text="@{ivlItem.description}"
+                            android:text="@{ivlItem.data[0].description}"
                             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColor="@color/lightGray"
                             tools:text="@tools:sample/lorem/random" />
 
                     </LinearLayout>
@@ -84,19 +90,22 @@
                     <com.google.android.material.divider.MaterialDivider
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp" />
+                        android:layout_marginHorizontal="16dp"
+                        android:visibility="@{ivlItem.data[0].keywords == null ? View.GONE : View.VISIBLE}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="16dp">
+                        android:padding="16dp"
+                        android:visibility="@{ivlItem.data[0].keywords == null ? View.GONE : View.VISIBLE}">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/keywords"
-                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                            android:textColor="@color/black" />
 
                         <HorizontalScrollView
                             android:layout_width="match_parent"
@@ -104,9 +113,9 @@
                             android:scrollbars="none">
 
                             <com.google.android.material.chip.ChipGroup
-                                app:chipListData="@{ivlItem.keywords}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                app:chipListData="@{ivlItem.data[0].keywords}"
                                 app:singleLine="true" />
 
                         </HorizontalScrollView>
