@@ -62,5 +62,8 @@
 
     <!--  Filters  -->
     <string name="all">All</string>
+    <string name="previous_page">Previous Page</string>
+    <string name="next_page">Next Page</string>
+    <string name="showing_results_for_colon">Showing Results For:</string>
 
 </resources>
