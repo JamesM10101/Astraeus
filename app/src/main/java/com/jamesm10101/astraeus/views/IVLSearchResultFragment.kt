@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.jamesm10101.astraeus.R
-import com.jamesm10101.astraeus.data.NasaIVLImageCollection
+import com.jamesm10101.astraeus.data.NasaIVLImage
 import com.jamesm10101.astraeus.databinding.FragmentIvlSearchResultBinding
 import com.jamesm10101.astraeus.viewModels.IVLSearchResultViewModel
 import com.jamesm10101.astraeus.viewModels.MainViewModel
@@ -19,7 +19,7 @@ import java.util.Locale
 private const val ARG_SEARCH_RESULT = "searchResult"
 
 class IVLSearchResultFragment : MainBaseFragment() {
-    private var searchResult: NasaIVLImageCollection? = null
+    private var searchResult: NasaIVLImage? = null
     private val viewModel: IVLSearchResultViewModel by viewModels()
     private lateinit var mainViewModel: MainViewModel
 
@@ -40,7 +40,7 @@ class IVLSearchResultFragment : MainBaseFragment() {
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
         binding.viewModel = viewModel
-        binding.searchResult = searchResult?.images!![0]
+        binding.searchResult = searchResult
 
         return binding.root
     }
@@ -51,7 +51,7 @@ class IVLSearchResultFragment : MainBaseFragment() {
         val txtDateCreated = view.findViewById<TextView>(R.id.txtV_created)
 
         try {
-            val date = searchResult!!.images[0].data[0].dateCreated
+            val date = searchResult!!.data[0].dateCreated
             txtDateCreated.text = SimpleDateFormat("MMMM dd yyyy", Locale.US).format(
                 SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(date)!!
             );

@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.adapter.RecyclerItemTouchListener
-import com.jamesm10101.astraeus.data.NasaIVLImageCollection
+import com.jamesm10101.astraeus.data.NasaIVLImage
 import com.jamesm10101.astraeus.databinding.FragmentIvlSearchResultsBinding
 import com.jamesm10101.astraeus.viewModels.IVLSearchResultsViewModel
 
@@ -53,7 +53,8 @@ class IVLSearchResultsFragment : Fragment() {
         return RecyclerItemTouchListener(
             context, recyclerView, object : RecyclerItemTouchListener.ClickListener {
                 override fun onClick(view: View?, position: Int) {
-                    val searchResult: NasaIVLImageCollection = viewModel.searchResults.value!!
+                    val searchResult: NasaIVLImage =
+                        viewModel.searchResults.value!!.images[position]
 
                     val bundle = Bundle()
                     bundle.putParcelable("searchResult", searchResult)
@@ -63,7 +64,7 @@ class IVLSearchResultsFragment : Fragment() {
 
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.main_fragment, fragment)
-                        .addToBackStack(searchResult.selfUrl)
+                        .addToBackStack(searchResult.imgUrl)
                         .commit()
                 }
 
