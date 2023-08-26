@@ -2,7 +2,6 @@ package com.jamesm10101.astraeus.views
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +15,10 @@ import com.jamesm10101.astraeus.viewModels.IVLSearchResultViewModel
 import com.jamesm10101.astraeus.viewModels.MainViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
-import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities.Local
 
 private const val ARG_SEARCH_RESULT = "searchResult"
 
-class IVLSearchResultFragment : Fragment() {
+class IVLSearchResultFragment : MainBaseFragment() {
     private var searchResult: NasaIVLImageCollection? = null
     private val viewModel: IVLSearchResultViewModel by viewModels()
     private lateinit var mainViewModel: MainViewModel
@@ -31,6 +29,7 @@ class IVLSearchResultFragment : Fragment() {
             searchResult = it.getParcelable(ARG_SEARCH_RESULT)
         }
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        handleBackPress(mainViewModel)
     }
 
     override fun onCreateView(
