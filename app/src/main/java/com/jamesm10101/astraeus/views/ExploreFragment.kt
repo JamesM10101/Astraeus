@@ -2,18 +2,22 @@ package com.jamesm10101.astraeus.views
 
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputEditText
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.adapter.RecyclerItemTouchListener
 import com.jamesm10101.astraeus.data.ExploreSuggestionEnums
 import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.ExploreSuggestionItems
 import com.jamesm10101.astraeus.databinding.FragmentExploreBinding
-import java.lang.Exception
+
 
 class ExploreFragment : MainBaseFragment() {
 
@@ -36,6 +40,27 @@ class ExploreFragment : MainBaseFragment() {
 
         val cycExploreItems = view.findViewById<RecyclerView>(R.id.cycV_exploreItems)
         cycExploreItems.addOnItemTouchListener(onExploreCarouselItemClick(cycExploreItems))
+
+        val searchView = view.findViewById<TextInputEditText>(R.id.tiet_ivlSearch)
+        searchView.setOnEditorActionListener { textView, actionId, event ->
+            submitSearchQuery(textView, actionId, event)
+        };
+    }
+
+    private fun submitSearchQuery(textView: TextView, actionId: Int, event: KeyEvent): Boolean {
+        return if (actionId == EditorInfo.IME_ACTION_GO) {
+
+            val bundle = Bundle()
+            bundle.putString("query", textView.text.toString())
+
+            val fragment = IVLSearchResultsFragment()
+            fragment.arguments = bundle
+
+            parentFragmentManager.beginTransaction().replace(R.id.main_fragment, fragment)
+                .addToBackStack(textView.text.toString()).commit()
+
+            true
+        } else false
     }
 
     private fun onExploreCarouselItemClick(
