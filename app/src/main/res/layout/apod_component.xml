@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,61 +12,70 @@
             type="com.jamesm10101.astraeus.data.APOD" />
     </data>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_APOD_imgWrapper"
+    <com.google.android.material.carousel.MaskableFrameLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imgV_APOD"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/apod_image"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{apod.thumbUrl != null ? apod.thumbUrl : apod.mediaSrcUrl}" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#99000000"
-            android:maxHeight="60dp"
-            android:padding="5dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
 
-            <TextView
-                android:id="@+id/txtV_APOD_title"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="bottom"
-                android:lineSpacingExtra="4sp"
-                android:maxLines="1"
-                android:text="@{apod.title.empty ? `Title` : apod.title}"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtV_APOD_copyright"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lineSpacingExtra="4sp"
-                android:maxLines="2"
-                android:text="@{apod.copyright}"
-                android:textColor="@color/white"
-                android:textSize="11sp"
-                android:visibility="@{apod.copyright.length() == 0 ? View.GONE : View.VISIBLE}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtV_APOD_title" />
+                <ImageView
+                    android:id="@+id/imgV_APOD"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/apod_image"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{apod.thumbUrl != null ? apod.thumbUrl : apod.mediaSrcUrl}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="8dp">
 
-    </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/txtV_APOD_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="bottom"
+                        android:lineSpacingExtra="4sp"
+                        android:maxLines="1"
+                        android:text="@{apod.title.empty ? `Title` : apod.title}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="@string/placeholder_title" />
+
+                    <TextView
+                        android:id="@+id/txtV_APOD_copyright"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{apod.copyright}"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"
+                        android:visibility="@{apod.copyright.length() == 0 ? View.GONE : View.VISIBLE}"
+                        tools:text="@string/copyright_owner" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </com.google.android.material.carousel.MaskableFrameLayout>
 
 </layout>

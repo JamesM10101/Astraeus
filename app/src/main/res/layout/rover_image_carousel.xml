@@ -20,7 +20,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:background="@color/nasaBlue">
 
         <TextView
             android:id="@+id/txtV_carouselTitle"
@@ -32,7 +33,8 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/placeholder_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cycV_roverPhotos"

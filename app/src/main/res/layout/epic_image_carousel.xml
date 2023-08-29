@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:background="@color/nasaBlue">
 
         <TextView
             android:id="@+id/txtV_carouselTitle"
@@ -42,7 +43,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtV_carouselTitle"
             app:spanCount="1"
-            tools:listitem="@layout/rover_image_carousel_item" />
+            tools:listitem="@layout/epic_image_carousel_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
