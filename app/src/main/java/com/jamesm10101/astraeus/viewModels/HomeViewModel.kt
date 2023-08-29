@@ -41,22 +41,15 @@ class HomeViewModel : ViewModel() {
      *
      */
     private fun getRovers() {
-        // Rover 1 should be perseverance
         _rover1Name.value = MarsRoverName.PERSEVERANCE.name.lowercase().replaceFirstChar {
             it.uppercase()
         }
         getRoverLatest(MarsRoverName.PERSEVERANCE, _rover1photos)
 
-        // get a random rover for the second one
-        var randomRover = MarsRoverName.values()[Random.nextInt(0, MarsRoverName.values().size)]
-        while (randomRover == MarsRoverName.PERSEVERANCE) {
-            randomRover = MarsRoverName.values()[Random.nextInt(0, MarsRoverName.values().size)]
-        }
-
-        _rover2Name.value = randomRover.name.lowercase().replaceFirstChar {
+        _rover2Name.value = MarsRoverName.CURIOSITY.name.lowercase().replaceFirstChar {
             it.uppercase()
         }
-        getRoverLatest(randomRover, _rover2photos)
+        getRoverLatest(MarsRoverName.CURIOSITY, _rover2photos)
     }
 
     /**
