@@ -22,20 +22,18 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_ivlSearch"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                app:boxCornerRadiusBottomEnd="100dp"
-                app:boxCornerRadiusBottomStart="100dp"
-                app:boxCornerRadiusTopEnd="100dp"
-                app:boxCornerRadiusTopStart="100dp"
-                app:boxStrokeWidth="0dp"
+                app:boxCornerRadiusBottomEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiet_ivlSearch"
-                    style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/search_here"
