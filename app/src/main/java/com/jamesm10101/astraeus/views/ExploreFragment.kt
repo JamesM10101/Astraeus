@@ -47,7 +47,7 @@ class ExploreFragment : MainBaseFragment() {
         };
     }
 
-    private fun submitSearchQuery(textView: TextView, actionId: Int, event: KeyEvent): Boolean {
+    private fun submitSearchQuery(textView: TextView, actionId: Int, event: KeyEvent?): Boolean {
         return if (actionId == EditorInfo.IME_ACTION_GO) {
 
             val bundle = Bundle()
