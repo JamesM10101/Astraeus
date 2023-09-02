@@ -10,7 +10,7 @@
             type="com.jamesm10101.astraeus.data.MarsRover" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp">
@@ -18,12 +18,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#00000000"
             android:padding="5dp"
             android:paddingEnd="10dp"
             tools:ignore="RtlSymmetry">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtV_launchDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -32,14 +31,14 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@{rover.launchDate}"
-                android:textColor="#212121"
                 android:textSize="14sp"
                 app:drawableStartCompat="@drawable/ic_north_east"
+                app:drawableTint="?attr/colorOnSurface"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/placeholder_date" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtV_landDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,14 +48,14 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@{rover.landingDate}"
-                android:textColor="#212121"
                 android:textSize="14sp"
                 app:drawableStartCompat="@drawable/ic_south_east"
+                app:drawableTint="?attr/colorOnSurface"
                 app:layout_constraintLeft_toRightOf="@id/txtV_launchDate"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/placeholder_date" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtV_lastResponseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,14 +65,14 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@{rover.maxDate}"
-                android:textColor="#212121"
                 android:textSize="14sp"
                 app:drawableStartCompat="@drawable/ic_cell_tower"
+                app:drawableTint="?attr/colorOnSurface"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtV_launchDate"
                 tools:text="@string/placeholder_date" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtV_totalPhotos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,14 +83,14 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@{String.format(&quot;%,d&quot;, rover.totalPhotos)}"
-                android:textColor="#212121"
                 android:textSize="14sp"
                 app:drawableStartCompat="@drawable/ic_image"
+                app:drawableTint="?attr/colorOnSurface"
                 app:layout_constraintLeft_toRightOf="@id/txtV_lastResponseDate"
                 app:layout_constraintTop_toBottomOf="@id/txtV_launchDate"
                 tools:text="@string/placeholder_number" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtV_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,13 +103,14 @@
                 android:textColor="@{rover.status.equals(`active`) ? @color/inactiveRoverText : @color/activeRoverText}"
                 android:textSize="14sp"
                 app:drawableStartCompat="@drawable/ic_access_time"
+                app:drawableTint="?attr/colorOnSurface"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtV_lastResponseDate"
                 tools:text="@string/placeholder"
-                tools:textColor="#212121" />
+                tools:textColor="@color/inactiveRoverText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

@@ -14,8 +14,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/offWhite">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,17 +32,16 @@
                     android:orientation="vertical"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:text="@string/showing_results_for_colon"
-                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -52,7 +50,6 @@
                         android:maxLines="1"
                         android:text="@{viewModel.query}"
                         android:textAllCaps="true"
-                        android:textColor="@color/nasaBlue"
                         android:textSize="30sp"
                         android:textStyle="bold"
                         tools:text="@string/placeholder_title" />
@@ -67,7 +64,7 @@
                     android:onClickListener="@{viewModel.onToggleGridViewClickListener()}"
                     app:icon="@{viewModel.showGridView ? @drawable/ic_grid_view : @drawable/ic_list_view}"
                     app:iconSize="25dp"
-                    app:iconTint="@color/black"
+                    app:iconTint="?attr/colorPrimaryInverse"
                     app:layout_constraintBottom_toBottomOf="@id/layout_header"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:icon="@drawable/ic_list_view" />

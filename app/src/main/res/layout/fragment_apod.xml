@@ -20,11 +20,9 @@
             type="androidx.lifecycle.LiveData&lt;com.jamesm10101.astraeus.data.APOD>" />
     </data>
 
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/nasaBlue"
         tools:context=".views.ApodFragment">
 
         <include
@@ -84,20 +82,19 @@
                     android:padding="8dp"
                     app:layout_constraintTop_toBottomOf="@id/constraint_apodMediaWrapper">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="2"
                         android:text="@{apodResult.title}"
-                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="@string/placeholder" />
+                        tools:text="@string/placeholder_title" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_copyrightLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -106,13 +103,12 @@
                         android:labelFor="@id/txtV_copyright"
                         android:maxLines="3"
                         android:text="@string/copyright_colon"
-                        android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/txtV_title" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_copyright"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -120,21 +116,19 @@
                         android:ellipsize="end"
                         android:maxLines="3"
                         android:text="@{apodResult.copyright.length() > 0 ? apodResult.copyright.toString().replace(`\n`, ``)  : `NASA`}"
-                        android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@id/txtV_copyrightLabel"
                         app:layout_constraintLeft_toRightOf="@id/txtV_copyrightLabel"
                         app:layout_constraintTop_toTopOf="@id/txtV_copyrightLabel"
                         tools:text="@string/placeholder" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_explanation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:justificationMode="inter_word"
                         android:text="@{apodResult.explanation}"
-                        android:textColor="@color/white"
                         android:textSize="12sp"
                         app:layout_constraintTop_toBottomOf="@id/txtV_copyright"
                         tools:text="@string/placeholder_lorem" />

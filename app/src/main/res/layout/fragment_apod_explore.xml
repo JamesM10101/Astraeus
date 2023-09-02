@@ -37,7 +37,7 @@
                 android:src="@drawable/thumb_apod_logo_cropped"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtV_APOD_blurb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +54,6 @@
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
                 android:visibility="@{viewModel.apodImages == null ? View.VISIBLE : View.GONE}"
-                app:indicatorColor="@color/nasaRed"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -76,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="@color/white"
+                    android:background="@android:color/transparent"
                     android:clipToPadding="false"
                     android:importantForAccessibility="no"
                     android:orientation="vertical"

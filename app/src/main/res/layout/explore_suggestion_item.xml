@@ -33,7 +33,7 @@
                     android:src="@{exploreItem.drawableRes}"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtV_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

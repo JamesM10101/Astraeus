@@ -44,7 +44,7 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="8dp">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_APOD_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -53,19 +53,17 @@
                         android:lineSpacingExtra="4sp"
                         android:maxLines="1"
                         android:text="@{apod.title.empty ? `Title` : apod.title}"
-                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         tools:text="@string/placeholder_title" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_APOD_copyright"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="2"
                         android:text="@{apod.copyright}"
-                        android:textColor="@color/black"
                         android:textSize="11sp"
                         android:visibility="@{apod.copyright.length() == 0 ? View.GONE : View.VISIBLE}"
                         tools:text="@string/copyright_owner" />

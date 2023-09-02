@@ -13,7 +13,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/nasaBlue"
         tools:context=".views.ExploreFragment">
 
         <LinearLayout
@@ -23,10 +22,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_ivlSearch"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                app:boxBackgroundColor="@color/offWhite"
                 app:boxCornerRadiusBottomEnd="100dp"
                 app:boxCornerRadiusBottomStart="100dp"
                 app:boxCornerRadiusTopEnd="100dp"
@@ -36,15 +35,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiet_ivlSearch"
+                    style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/search_here"
                     android:imeOptions="actionGo"
                     android:importantForAccessibility="auto"
                     android:inputType="text"
-                    android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/lightGray" />
+                    android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

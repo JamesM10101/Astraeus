@@ -4,29 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/nasaBlueDarkVariant"
+    android:background="?attr/colorPrimary"
     tools:context=".views.ConstructionFragment">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_gravity="center"
             android:contentDescription="@string/under_construction"
             android:src="@drawable/ic_construction"
-            android:layout_gravity="center"
             app:tint="@color/martian_orange" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/under_construction"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:text="@string/under_construction"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="30sp" />
 
     </LinearLayout>

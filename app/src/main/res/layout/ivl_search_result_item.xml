@@ -23,8 +23,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/offWhite">
+            android:layout_margin="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,17 +51,16 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:maxLines="2"
                             android:text="@{ivlItem.data[0].title}"
                             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                            android:textColor="@color/black"
                             tools:text="@string/placeholder_title" />
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -70,11 +68,10 @@
                             android:maxLines="1"
                             android:text="@{ivlItem.data[0].photographer != null ? ivlItem.data[0].photographer : ivlItem.data[0].secondaryCreator}"
                             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="@color/lightGray"
                             android:visibility="@{ivlItem.data[0].photographer == null &amp;&amp; ivlItem.data[0].secondaryCreator == null ? View.GONE : View.VISIBLE}"
                             tools:text="@string/copyright_owner" />
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -82,7 +79,6 @@
                             android:maxLines="2"
                             android:text="@{ivlItem.data[0].description}"
                             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="@color/lightGray"
                             tools:text="@tools:sample/lorem/random" />
 
                     </LinearLayout>
@@ -100,12 +96,11 @@
                         android:padding="16dp"
                         android:visibility="@{ivlItem.data[0].keywords == null ? View.GONE : View.VISIBLE}">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/keywords"
-                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                            android:textColor="@color/black" />
+                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                         <HorizontalScrollView
                             android:layout_width="match_parent"
