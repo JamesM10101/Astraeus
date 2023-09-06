@@ -110,15 +110,15 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_copyright"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:ellipsize="end"
                         android:maxLines="3"
                         android:text="@{apodResult.copyright.length() > 0 ? apodResult.copyright.toString().replace(`\n`, ``)  : `NASA`}"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@id/txtV_copyrightLabel"
-                        app:layout_constraintLeft_toRightOf="@id/txtV_copyrightLabel"
+                        app:layout_constraintStart_toEndOf="@id/txtV_copyrightLabel"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/txtV_copyrightLabel"
                         tools:text="@string/placeholder" />
 
