@@ -1,13 +1,14 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-    id 'kotlin-kapt'
-    id 'kotlin-parcelize'
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "com.google.android.libraries.mapsplatform.secrets-gradle-plugin"
+    id "kotlin-kapt"
+    id "kotlin-parcelize"
+    id "com.google.devtools.ksp" version "1.9.0-1.0.11"
 }
 
 def getProps(String propName) {
-    def propsFile = rootProject.file('local.properties')
+    def propsFile = rootProject.file("local.properties")
     if (propsFile.exists()) {
         def props = new Properties()
         props.load(new FileInputStream(propsFile))
@@ -18,7 +19,7 @@ def getProps(String propName) {
 }
 
 android {
-    namespace 'com.jamesm10101.astraeus'
+    namespace "com.jamesm10101.astraeus"
     compileSdk 33
 
     defaultConfig {
@@ -36,7 +37,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
@@ -46,7 +47,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -57,25 +58,38 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // kotlin
+    implementation "androidx.core:core-ktx:1.10.1"
+    implementation "com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.11"
+
+    // navigation
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.1"
+
+    // ui
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "com.google.android.material:material:1.9.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
 
     // images
     implementation "io.coil-kt:coil:2.2.2"
-    implementation 'com.github.MikeOrtiz:TouchImageView:3.3'
+    implementation "com.github.MikeOrtiz:TouchImageView:3.3"
 
     // http requests
-    implementation 'com.squareup.moshi:moshi-kotlin:1.14.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    implementation "com.squareup.moshi:moshi-kotlin:1.14.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
 
     // video playback
-    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0' // youtube
+    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0" // youtube
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    // local storage
+    def room_version = "2.5.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    ksp "androidx.room:room-compiler:$room_version"
+
+    // testing
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
 }
