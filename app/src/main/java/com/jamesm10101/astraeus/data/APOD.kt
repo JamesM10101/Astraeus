@@ -1,11 +1,15 @@
 package com.jamesm10101.astraeus.data
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
+@Entity(tableName = "apods")
 @Parcelize
 data class APOD(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @Json(name = "url") val mediaSrcUrl: String,
     @Json(name = "hdurl") val imgSrcHDUrl: String?,
     @Json(name = "thumbnail_url") val thumbUrl: String?,
