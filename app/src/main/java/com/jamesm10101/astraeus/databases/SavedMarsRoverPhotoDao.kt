@@ -28,9 +28,19 @@ interface SavedMarsRoverPhotoDao {
     @Delete
     suspend fun deleteMarsRoverPhoto(marsRoverPhoto: MarsRoverPhoto)
 
-//    @Query("SELECT * FROM mars_rover_photos WHERE rover.id = :marsRoverName ORDER BY id ASC")
-//    fun getAllMarsRoverPhotosByRoverOrderById(marsRoverName: String): Flow<List<MarsRoverPhoto>>
+    /**
+     * Gets all saved Mars rover photos ordered by ID.
+     *
+     * @return All saved Mars rover photos ordered by ID.
+     */
+    @Query("SELECT * FROM mars_rover_photos ORDER BY id ASC")
+    fun getAllMarsRoverPhotosOrderById(): Flow<List<MarsRoverPhoto>>
 
-//    @Query("SELECT * FROM mars_rover_photos WHERE rover.id = :marsRoverName ORDER BY sol ASC")
-//    fun getAllMarsRoverPhotosByRoverOrderBySol(marsRoverName: String): Flow<List<MarsRoverPhoto>>
+    /**
+     * Gets all saved Mars rover photos ordered by Sol.
+     *
+     * @return All saved Mars rover photos ordered by Sol.
+     */
+    @Query("SELECT * FROM mars_rover_photos ORDER BY sol ASC")
+    fun getAllMarsRoverPhotosOrderBySol(): Flow<List<MarsRoverPhoto>>
 }
