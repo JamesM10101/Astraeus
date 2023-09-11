@@ -15,9 +15,6 @@
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.ApodViewModel" />
 
-        <variable
-            name="apodResult"
-            type="androidx.lifecycle.LiveData&lt;com.jamesm10101.astraeus.data.APOD>" />
     </data>
 
     <FrameLayout
@@ -27,7 +24,7 @@
 
         <include
             layout="@layout/touch_image_full"
-            app:photoUrl="@{apodResult.mediaType.equals(`video`) ? apodResult.thumbUrl : apodResult.imgSrcHDUrl}"
+            app:photoUrl="@{viewModel.apod.mediaType.equals(`video`) ? viewModel.apod.thumbUrl : viewModel.apod.imgSrcHDUrl}"
             app:showImage="@{mainViewModel.showTouchImage}"
             app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
             tools:visibility="gone" />
@@ -55,7 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:layout_gravity="top"
-                        android:visibility="@{apodResult.mediaType.equals(`video`) ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{viewModel.apod.mediaType.equals(`video`) ? View.VISIBLE : View.GONE}"
                         app:autoPlay="false"
                         app:enableAutomaticInitialization="false"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -68,12 +65,26 @@
                         android:contentDescription="@string/apod_image"
                         android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
                         android:scaleType="fitCenter"
-                        android:visibility="@{apodResult.mediaType.equals(`video`) ? View.GONE : View.VISIBLE}"
-                        app:imageUrl="@{apodResult.mediaType.equals(`video`) ? apodResult.thumbUrl : apodResult.mediaSrcUrl}"
+                        android:visibility="@{viewModel.apod.mediaType.equals(`video`) ? View.GONE : View.VISIBLE}"
+                        app:imageUrl="@{viewModel.apod.mediaType.equals(`video`) ? viewModel.apod.thumbUrl : viewModel.apod.mediaSrcUrl}"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:src="@tools:sample/backgrounds/scenic" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save"
+                    style="?attr/materialIconButtonFilledStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#66000000"
+                    android:checkable="true"
+                    android:checked="@{viewModel.apodSaved != null}"
+                    android:contentDescription="@string/save_apod"
+                    android:onClickListener="@{() -> viewModel.handleBookmarkClick(viewModel.apod)}"
+                    app:icon="@drawable/ic_menu_saved"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -88,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="@{apodResult.title}"
+                        android:text="@{viewModel.apod.title}"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintTop_toTopOf="parent"
@@ -115,10 +126,10 @@
                         android:layout_marginStart="5dp"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:text="@{apodResult.copyright.length() > 0 ? apodResult.copyright.toString().replace(`\n`, ``)  : `NASA`}"
+                        android:text="@{viewModel.apod.copyright.length() > 0 ? viewModel.apod.copyright.toString().replace(`\n`, ``)  : `NASA`}"
                         android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@id/txtV_copyrightLabel"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/txtV_copyrightLabel"
                         app:layout_constraintTop_toTopOf="@id/txtV_copyrightLabel"
                         tools:text="@string/placeholder" />
 
@@ -128,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:justificationMode="inter_word"
-                        android:text="@{apodResult.explanation}"
+                        android:text="@{viewModel.apod.explanation}"
                         android:textSize="12sp"
                         app:layout_constraintTop_toBottomOf="@id/txtV_copyright"
                         tools:text="@string/placeholder_lorem" />

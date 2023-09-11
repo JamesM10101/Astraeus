@@ -29,6 +29,15 @@ interface SavedApodDao {
     suspend fun deleteApod(apod: APOD)
 
     /**
+     * Gets a saved APOD with a matching date if one exists.
+     *
+     * @param apodDate The date of the apod to check for.
+     * @return The saved APOD if one exists, null otherwise.
+     */
+    @Query("SELECT * FROM apods WHERE date = :apodDate")
+    fun getSavedApodFromDate(apodDate: String): Flow<APOD?>
+
+    /**
      * Gets all saved APODs ordered by ID.
      *
      * @return All saved APODs ordered by ID.

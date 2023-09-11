@@ -17,7 +17,7 @@ import com.jamesm10101.astraeus.data.MarsRoverPhoto
 import com.jamesm10101.astraeus.databinding.FragmentHomeBinding
 import com.jamesm10101.astraeus.viewModels.HomeViewModel
 import com.jamesm10101.astraeus.viewModels.MainViewModel
-import java.lang.Exception
+import kotlin.Exception
 
 class HomeFragment : Fragment() {
 
@@ -138,8 +138,22 @@ class HomeFragment : Fragment() {
 
     private fun onApodComponentClick(): View.OnClickListener {
         return View.OnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.main_fragment, ApodFragment())
-                .addToBackStack(null).commit()
+            try {
+                val bundle = Bundle()
+                bundle.putParcelable("apod", mainViewModel.apodResult.value!!)
+
+                val fragment = ApodFragment()
+                fragment.arguments = bundle
+                parentFragmentManager.beginTransaction().replace(R.id.main_fragment, fragment)
+                    .addToBackStack(null).commit()
+            } catch (e: Exception) {
+                Toast.makeText(
+                    requireContext(),
+                    "Could not Apod details.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e("ApodDetails", e.message.toString())
+            }
         }
     }
 

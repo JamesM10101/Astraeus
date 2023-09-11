@@ -5,24 +5,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.databinding.FragmentApodBinding
 import com.jamesm10101.astraeus.utils.getApodUrlEmbed
 import com.jamesm10101.astraeus.viewModels.ApodViewModel
+import com.jamesm10101.astraeus.viewModels.ApodViewModelFactory
 import com.jamesm10101.astraeus.viewModels.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
-
 class ApodFragment : MainBaseFragment() {
 
-    private val viewModel: ApodViewModel by viewModels()
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var viewModel: ApodViewModel
 
     private var apod: APOD? = null
 
@@ -33,6 +31,13 @@ class ApodFragment : MainBaseFragment() {
 
         @Suppress("DEPRECATION")
         apod = arguments?.getParcelable("apod")
+
+        viewModel = ViewModelProvider(
+            this, ApodViewModelFactory(
+                apod!!,
+                (requireActivity().application as AstraeusApplication).savedPostsDatabase.savedApodDao
+            )
+        )[ApodViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -42,11 +47,6 @@ class ApodFragment : MainBaseFragment() {
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
         binding.viewModel = viewModel
-
-        binding.apodResult = when (apod != null) {
-            true -> MutableLiveData(apod)
-            false -> mainViewModel.apodResult
-        }
 
         return binding.root
     }
