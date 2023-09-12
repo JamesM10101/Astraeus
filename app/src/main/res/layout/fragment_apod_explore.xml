@@ -71,7 +71,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cycV_apodExploreItems"
-                    apodExploreListData="@{viewModel.apodImages}"
+                    apodListData="@{viewModel.apodImages}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

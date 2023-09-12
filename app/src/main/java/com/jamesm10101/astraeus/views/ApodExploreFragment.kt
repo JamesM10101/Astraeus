@@ -1,21 +1,16 @@
 package com.jamesm10101.astraeus.views
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jamesm10101.astraeus.R
-import com.jamesm10101.astraeus.adapter.RecyclerItemTouchListener
-import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.databinding.FragmentApodExploreBinding
 import com.jamesm10101.astraeus.viewModels.ApodExploreViewModel
-import java.lang.Exception
 
 class ApodExploreFragment : Fragment() {
 
@@ -37,7 +32,6 @@ class ApodExploreFragment : Fragment() {
         val recycler = view.findViewById<RecyclerView>(R.id.cycV_apodExploreItems)
 
         recycler.addOnScrollListener(onApodExploreScrollListener(recycler))
-        recycler.addOnItemTouchListener(onApodExploreItemClick(recycler))
     }
 
     private fun onApodExploreScrollListener(recyclerView: RecyclerView): RecyclerView.OnScrollListener {
@@ -51,7 +45,7 @@ class ApodExploreFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    viewModel.loadApodImages() {
+                    viewModel.loadApodImages {
                         // keep scrolled position
                         val state = layoutManager.onSaveInstanceState()
                         layoutManager.onRestoreInstanceState(state)
@@ -60,40 +54,4 @@ class ApodExploreFragment : Fragment() {
             }
         }
     }
-
-    private fun onApodExploreItemClick(
-        recyclerView: RecyclerView
-    ): RecyclerItemTouchListener {
-
-        // switch to apod fragment
-        return RecyclerItemTouchListener(
-            context,
-            recyclerView,
-            object : RecyclerItemTouchListener.ClickListener {
-                override fun onClick(view: View?, position: Int) {
-                    val apod: APOD = viewModel.apodImages.value!![position]
-
-                    try {
-                        val bundle = Bundle()
-                        bundle.putParcelable("apod", apod)
-
-                        val fragment = ApodFragment()
-                        fragment.arguments = bundle
-
-                        parentFragmentManager.beginTransaction()
-                            .replace(R.id.main_fragment, fragment).addToBackStack(apod.title)
-                            .commit()
-                    } catch (e: Exception) {
-                        Toast.makeText(
-                            requireContext(), "Could not open image details", Toast.LENGTH_SHORT
-                        ).show()
-                        Log.e("ApodExploreDetails", e.message.toString())
-                    }
-
-                }
-
-                override fun onLongClick(view: View?, position: Int) {}
-            })
-    }
-
 }

@@ -6,10 +6,8 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.load
 import com.google.android.material.chip.Chip
@@ -21,10 +19,8 @@ import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.MarsRoverCam
 import com.jamesm10101.astraeus.data.MarsRoverInstrument
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
-import com.jamesm10101.astraeus.data.NasaIVLImage
 import com.jamesm10101.astraeus.data.NasaIVLImageCollection
 import com.jamesm10101.astraeus.databinding.MarsRoverCamsChipBinding
-import java.util.Objects
 import kotlin.Exception
 
 @BindingAdapter("imageUrl")
@@ -64,10 +60,10 @@ fun bindRecyclerViewExplore(recyclerView: RecyclerView, data: List<ExploreSugges
     adapter.submitList(data)
 }
 
-@BindingAdapter("apodExploreListData")
+@BindingAdapter("apodListData")
 fun bindRecyclerViewApodExplore(recyclerView: RecyclerView, data: List<APOD>?) {
     try {
-        val adapter = ApodExploreCarouselAdapter()
+        val adapter = ApodRecyclerAdapter()
         val currApodList = adapter.currentList
 
         recyclerView.adapter = adapter
@@ -78,7 +74,7 @@ fun bindRecyclerViewApodExplore(recyclerView: RecyclerView, data: List<APOD>?) {
         }
 
     } catch (e: Exception) {
-        Log.d("bindApodExplore", e.message.toString())
+        Log.e("bindApodExplore", e.message.toString())
     }
 }
 
@@ -96,7 +92,7 @@ fun bindMarsRoverExplore(recyclerView: RecyclerView, data: List<MarsRoverPhoto>?
         }
 
     } catch (e: Exception) {
-        Log.d("bindMarsRoverExplore", e.message.toString())
+        Log.e("bindMarsRoverExplore", e.message.toString())
     }
 }
 
@@ -138,8 +134,7 @@ fun bindOnCheckChanged(chipGroup: ChipGroup, listener: ChipGroup.OnCheckedStateC
 
 @BindingAdapter("marsRoverInstruments")
 fun bindMarsRoverInstrument(
-    recyclerView: RecyclerView,
-    data: List<MarsRoverInstrument>
+    recyclerView: RecyclerView, data: List<MarsRoverInstrument>
 ) {
     try {
         recyclerView.adapter = MarsRoverInstrumentsListAdapter()
@@ -172,8 +167,7 @@ fun bindChipListData(chipGroup: ChipGroup, data: List<String>?) {
 
 @BindingAdapter("ivlSearchResults")
 fun bindIVLSearchResults(
-    recyclerView: RecyclerView,
-    data: NasaIVLImageCollection?
+    recyclerView: RecyclerView, data: NasaIVLImageCollection?
 ) {
     try {
         recyclerView.adapter = IVLSearchResultsAdapter()
@@ -201,7 +195,7 @@ fun bindIVLSpanCountInt(recyclerView: RecyclerView, size: Int) {
     }
 }
 
-@BindingAdapter("test:printData")
+@BindingAdapter("printData")
 fun bindTestPrintData(view: View, data: Any?) {
     try {
         Log.d("data", data.toString())
