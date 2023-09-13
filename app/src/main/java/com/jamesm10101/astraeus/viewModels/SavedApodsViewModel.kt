@@ -25,11 +25,11 @@ class SavedApodsViewModel(
     private val _apods = _sortType.flatMapLatest { sortType ->
         when (sortType) {
             ApodSortType.ID -> {
-                savedApodDao.getAllApodOrderById()
+                savedApodDao.getAllApodOrderByIdDesc()
             }
 
             ApodSortType.DATE -> {
-                savedApodDao.getAllApodOrderByDate()
+                savedApodDao.getAllApodOrderByDateDesc()
             }
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())

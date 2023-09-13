@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.jamesm10101.astraeus.data.ApodSortType" />
+
         <variable
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.SavedApodsViewModel" />
@@ -58,7 +60,7 @@
                     android:drawablePadding="5dp"
                     android:gravity="center"
                     android:onClickListener="@{viewModel.sortClick()}"
-                    android:text="@{viewModel.state.apodSortType.toString()}"
+                    android:text="@{viewModel.state.apodSortType == ApodSortType.ID ? `Recent` : `Date`}"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
