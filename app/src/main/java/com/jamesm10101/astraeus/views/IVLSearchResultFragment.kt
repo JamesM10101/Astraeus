@@ -37,7 +37,7 @@ class IVLSearchResultFragment : MainBaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentIvlSearchResultBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.mainViewModel = mainViewModel
         binding.viewModel = viewModel
         binding.searchResult = searchResult

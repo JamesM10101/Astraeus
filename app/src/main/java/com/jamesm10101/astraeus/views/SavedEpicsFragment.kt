@@ -26,7 +26,7 @@ class SavedEpicsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentSavedEpicsBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         return binding.root

@@ -25,14 +25,14 @@ class MarsRoverPhotoFragment : MainBaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding = FragmentMarsRoverPhotoBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.mainViewModel = mainViewModel
         binding.viewModel = viewModel
         viewModel.resources = resources
 
         @Suppress("DEPRECATION")
         binding.roverPhoto = requireArguments().getParcelable("marsRoverPhoto")
-        
+
         return binding.root
     }
 

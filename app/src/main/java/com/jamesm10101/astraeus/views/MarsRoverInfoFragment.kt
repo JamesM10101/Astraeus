@@ -27,7 +27,7 @@ class MarsRoverInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentMarsRoverInfoBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.roverDetails = roverDetails
         binding.marsRoverSpecs = getRoverSpecs(getRoverNameEnum(roverDetails!!.name))
 

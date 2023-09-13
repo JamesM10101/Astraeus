@@ -32,7 +32,7 @@ class MarsRoverExploreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentMarsRoverExploreBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         return binding.root
