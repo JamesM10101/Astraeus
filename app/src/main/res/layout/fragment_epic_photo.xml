@@ -14,10 +14,6 @@
         <variable
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.EpicPhotoViewModel" />
-
-        <variable
-            name="epicPhoto"
-            type="com.jamesm10101.astraeus.data.Epic" />
     </data>
 
     <FrameLayout
@@ -27,7 +23,7 @@
 
         <include
             layout="@layout/touch_image_full"
-            app:photoUrl="@{epicPhoto.imgSrcUrl}"
+            app:photoUrl="@{viewModel.epic.imgSrcUrl}"
             app:showImage="@{mainViewModel.showTouchImage}"
             app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
             tools:visibility="gone" />
@@ -52,9 +48,26 @@
                     android:contentDescription="@string/rover_image"
                     android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
                     android:scaleType="fitCenter"
-                    app:imageUrl="@{epicPhoto.imgSrcUrl}"
+                    app:imageUrl="@{viewModel.epic.imgSrcUrl}"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@tools:sample/backgrounds/scenic" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save"
+
+                    style="?attr/materialIconButtonFilledStyle"
+
+                    printData="@{viewModel.epic}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#66000000"
+                    android:checkable="true"
+                    android:checked="@{viewModel.epicSaved != null}"
+                    android:contentDescription="@string/save_epic"
+                    android:onClickListener="@{viewModel.handleBookmarkClick()}"
+                    app:icon="@drawable/ic_menu_saved"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/btn_showInfo"
@@ -65,7 +78,7 @@
                     android:contentDescription="@string/view_image_info"
                     android:onClickListener="@{viewModel.toggleShowImageDetails()}"
                     android:src="@drawable/ic_info"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/white" />
 
@@ -75,8 +88,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:visibility="@{viewModel.showEpicDetails == true ? View.VISIBLE : View.GONE}"
-                    app:epicPhoto="@{epicPhoto}"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:epicPhoto="@{viewModel.epic}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/btn_showInfo" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:justificationMode="inter_word"
                         android:maxLines="10"
-                        android:text="@{epicPhoto.caption}"
+                        android:text="@{viewModel.epic.caption}"
                         android:textSize="14sp"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="@string/placeholder_lorem" />
