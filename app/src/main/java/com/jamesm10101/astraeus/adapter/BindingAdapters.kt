@@ -53,6 +53,23 @@ fun bindRecyclerViewEpic(recyclerView: RecyclerView, data: List<Epic>?) {
     adapter.submitList(data)
 }
 
+@BindingAdapter("epicGridRecyclerListData")
+fun bindGridRecyclerViewEpic(recyclerView: RecyclerView, data: List<Epic>?) {
+    try {
+        val adapter = EpicGridRecyclerAdapter()
+        val currList = adapter.currentList
+
+        recyclerView.adapter = adapter
+        adapter.submitList(data)
+
+        if (currList.isNotEmpty()) {
+            adapter.notifyItemRangeChanged(currList.size - 1, data!!.size - 1)
+        }
+    } catch (e: Exception) {
+        Log.e("bindEpicGridRecycler", e.message.toString())
+    }
+}
+
 @BindingAdapter("exploreListData")
 fun bindRecyclerViewExplore(recyclerView: RecyclerView, data: List<ExploreSuggestionItem>?) {
     recyclerView.adapter = ExploreCarouselAdapter()
