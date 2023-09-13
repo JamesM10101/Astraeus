@@ -29,8 +29,7 @@ class ApodFragment : MainBaseFragment() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         handleBackPress(mainViewModel)
 
-        @Suppress("DEPRECATION")
-        apod = arguments?.getParcelable("apod")
+        @Suppress("DEPRECATION") apod = arguments?.getParcelable("apod")
 
         viewModel = ViewModelProvider(
             this, ApodViewModelFactory(
@@ -60,20 +59,21 @@ class ApodFragment : MainBaseFragment() {
         }
 
         // load video into the player
-        val youTubePlayerView: YouTubePlayerView = view.findViewById(R.id.ytp_apod)
-        lifecycle.addObserver(youTubePlayerView)
+        if (apod?.mediaType == "video") {
+            val youTubePlayerView: YouTubePlayerView = view.findViewById(R.id.ytp_apod)
+            lifecycle.addObserver(youTubePlayerView)
 
-        youTubePlayerView.initialize(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                try {
-                    val videoId = getApodUrlEmbed(apod?.mediaSrcUrl!!)
-                    youTubePlayer.loadVideo(videoId, 0f)
-                } catch (e: Exception) {
-                    Log.d("apodVideoLoad", e.message.toString())
+            youTubePlayerView.initialize(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    try {
+                        val videoId = getApodUrlEmbed(apod.mediaSrcUrl)
+                        youTubePlayer.loadVideo(videoId, 0f)
+                    } catch (e: Exception) {
+                        Log.d("apodVideoLoad", e.message.toString())
+                    }
                 }
-            }
-        })
-
+            })
+        }
     }
 
 }
