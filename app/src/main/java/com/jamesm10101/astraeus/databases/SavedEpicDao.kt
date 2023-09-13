@@ -29,12 +29,29 @@ interface SavedEpicDao {
     suspend fun deleteEpic(epic: Epic)
 
     /**
+     * Gets a saved Epic with a matching id if one exists.
+     *
+     * @param id The id of the epic to check for.
+     * @return The saved Epic if one exists, null otherwise.
+     */
+    @Query("SELECT * FROM epics WHERE id = :id")
+    fun getSavedEpicFromId(id: String): Flow<Epic?>
+
+    /**
      * Gets all saved EPICs ordered by ID.
      *
      * @return All saved EPICs ordered by ID.
      */
     @Query("SELECT * FROM epics ORDER BY id ASC")
-    fun getAllEpicOrderById(): Flow<List<Epic>>
+    fun getAllEpicOrderByIdAsc(): Flow<List<Epic>>
+
+    /**
+     * Gets all saved EPICs ordered by ID.
+     *
+     * @return All saved EPICs ordered by ID.
+     */
+    @Query("SELECT * FROM epics ORDER BY id DESC")
+    fun getAllEpicOrderByIdDesc(): Flow<List<Epic>>
 
     /**
      * Gets all saved EPICs ordered by date.
@@ -42,5 +59,13 @@ interface SavedEpicDao {
      * @return All saved EPICs ordered by date.
      */
     @Query("SELECT * FROM epics ORDER BY date ASC")
-    fun getAllEpicOrderByDate(): Flow<List<Epic>>
+    fun getAllEpicOrderByDateAsc(): Flow<List<Epic>>
+
+    /**
+     * Gets all saved EPICs ordered by date.
+     *
+     * @return All saved EPICs ordered by date.
+     */
+    @Query("SELECT * FROM epics ORDER BY date DESC")
+    fun getAllEpicOrderByDateDesc(): Flow<List<Epic>>
 }
