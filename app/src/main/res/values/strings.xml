@@ -20,6 +20,7 @@
     <string name="keywords">Keywords</string>
     <string name="showing_results_for_colon">Showing Results For:</string>
     <string name="saved_apods_colon">Saved Apods:</string>
+    <string name="saved_epics_colon">Saved Epics:</string>
 
     <!--  Apod  -->
     <string name="apod_header">Astronomy Picture of the Day</string>
@@ -39,6 +40,7 @@
 
     <!--  Epic  -->
     <string name="epic_earth_photos">Epic Earth Photos</string>
+    <string name="save_epic">Save Epic</string>
 
     <!--  Navigation Menu  -->
     <string name="menu_search">Search</string>
