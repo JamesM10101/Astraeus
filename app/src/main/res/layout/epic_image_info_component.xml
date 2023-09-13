@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:labelFor="@id/txtV_date"
                 android:text="@string/taken_colon"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
