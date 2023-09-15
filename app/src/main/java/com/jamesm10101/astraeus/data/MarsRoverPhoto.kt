@@ -7,13 +7,16 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.parcelize.Parcelize
 
 /**
  * This class provides type converters for Mars Rover Photos.
  */
 class MarsRoverPhotoConverters {
-    private val moshi = Moshi.Builder().build()
+    val moshi: Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     /**
      * Converts a Mars Rover Photo to a JSON string.
