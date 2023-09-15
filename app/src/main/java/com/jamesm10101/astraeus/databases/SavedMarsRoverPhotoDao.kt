@@ -21,6 +21,15 @@ interface SavedMarsRoverPhotoDao {
     suspend fun saveMarsRoverPhoto(marsRoverPhoto: MarsRoverPhoto)
 
     /**
+     * Gets a saved MarsRoverPhoto with a matching id if one exists.
+     *
+     * @param id The id of the MarsRoverPhoto to check for.
+     * @return The saved MarsRoverPhoto if one exists, null otherwise.
+     */
+    @Query("SELECT * FROM mars_rover_photos WHERE id = :id")
+    fun getSavedPhotoFromId(id: Int): Flow<MarsRoverPhoto?>
+
+    /**
      * Deletes a Mars Rover Photo.
      *
      * @param marsRoverPhoto The Mars Rover Photo to delete.
