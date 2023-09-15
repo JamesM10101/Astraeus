@@ -1,10 +1,6 @@
 package com.jamesm10101.astraeus.viewModels
 
-import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,11 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.jamesm10101.astraeus.R
-import com.jamesm10101.astraeus.adapter.RecyclerItemTouchListener
 import com.jamesm10101.astraeus.apis.MarsRoverAPI
 import com.jamesm10101.astraeus.data.MarsRover
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
-import com.jamesm10101.astraeus.views.MarsRoverPhotoFragment
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -58,23 +52,22 @@ class MarsRoverExploreViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 // load in photos -- use cam if filtered
-                val photoList =
-                    when (_roverCam.value.isNullOrEmpty()) {
-                        true -> {
-                            MarsRoverAPI.retrofitService.getRoverPhotosSol(
-                                roverName, sol = _roverDetails.value!!.maxSol - loads
-                            ).photos.reversed()
-                        }
-
-                        false -> {
-                            MarsRoverAPI.retrofitService.getRoverPhotosSol(
-                                roverName,
-                                sol = _roverDetails.value!!.maxSol - loads,
-                                camera = _roverCam.value.toString()
-                            ).photos.reversed()
-                        }
-
+                val photoList = when (_roverCam.value.isNullOrEmpty()) {
+                    true -> {
+                        MarsRoverAPI.retrofitService.getRoverPhotosSol(
+                            roverName, sol = _roverDetails.value!!.maxSol - loads
+                        ).photos.reversed()
                     }
+
+                    false -> {
+                        MarsRoverAPI.retrofitService.getRoverPhotosSol(
+                            roverName,
+                            sol = _roverDetails.value!!.maxSol - loads,
+                            camera = _roverCam.value.toString()
+                        ).photos.reversed()
+                    }
+
+                }
 
                 // add photos to the list
                 if (_roverPhotos.value == null) {
@@ -168,50 +161,4 @@ class MarsRoverExploreViewModel : ViewModel() {
             }
         }
     }
-
-    /**
-     * Listens for clicks on the recycler view's items and navigates to the MarsRoverPhotoFragment
-     *
-     * @see MarsRoverPhotoFragment
-     *
-     * @param recyclerView the recycler view to listen to clicks on
-     * @return the RecyclerItemTouchListener
-     */
-    fun onMarsRoverExploreItemClick(
-        recyclerView: RecyclerView, fragmentManager: FragmentManager
-    ): RecyclerItemTouchListener {
-        val context = recyclerView.context
-
-        // switch to apod fragment
-        return RecyclerItemTouchListener(
-            context,
-            recyclerView,
-            object : RecyclerItemTouchListener.ClickListener {
-                override fun onClick(view: View?, position: Int) {
-                    val roverPhoto: MarsRoverPhoto = _roverPhotos.value!![position]
-
-                    try {
-                        val bundle = Bundle()
-                        bundle.putParcelable("marsRoverPhoto", roverPhoto)
-
-                        val fragment = MarsRoverPhotoFragment()
-                        fragment.arguments = bundle
-
-                        fragmentManager.beginTransaction()
-                            .replace(R.id.main_fragment, fragment)
-                            .addToBackStack(roverPhoto.id.toString())
-                            .commit()
-                    } catch (e: Exception) {
-                        Toast.makeText(
-                            context, "Could not open image details", Toast.LENGTH_SHORT
-                        ).show()
-                        Log.e("ApodExploreDetails", e.message.toString())
-                    }
-
-                }
-
-                override fun onLongClick(view: View?, position: Int) {}
-            })
-    }
-
 }

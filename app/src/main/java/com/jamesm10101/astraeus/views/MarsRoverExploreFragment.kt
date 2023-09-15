@@ -41,15 +41,9 @@ class MarsRoverExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // set the scroll and item touch listeners
+        // set the scroll listener
         val cycRoverPhotos = view.findViewById<RecyclerView>(R.id.cycV_roverPhotos)
         cycRoverPhotos.addOnScrollListener(viewModel.onRoverExploreScrollListener(cycRoverPhotos))
-        cycRoverPhotos.addOnItemTouchListener(
-            viewModel.onMarsRoverExploreItemClick(
-                cycRoverPhotos,
-                parentFragmentManager
-            )
-        )
 
         // set the onClick listener
         val btnRoverDetails = view.findViewById<MaterialButton>(R.id.btn_seeRoverDetails)

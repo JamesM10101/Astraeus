@@ -95,8 +95,8 @@ fun bindRecyclerViewApodExplore(recyclerView: RecyclerView, data: List<APOD>?) {
     }
 }
 
-@BindingAdapter("marsRoverExploreListData")
-fun bindMarsRoverExplore(recyclerView: RecyclerView, data: List<MarsRoverPhoto>?) {
+@BindingAdapter("marsRoverGridRecyclerListData")
+fun bindGridRecyclerMarsRoverPhoto(recyclerView: RecyclerView, data: List<MarsRoverPhoto>?) {
     try {
         val adapter = MarsRoverExploreAdapter()
         val currList = adapter.currentList
