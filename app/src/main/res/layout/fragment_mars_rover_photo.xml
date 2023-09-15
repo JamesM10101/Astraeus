@@ -17,9 +17,6 @@
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.MarsRoverPhotoViewModel" />
 
-        <variable
-            name="roverPhoto"
-            type="com.jamesm10101.astraeus.data.MarsRoverPhoto" />
     </data>
 
     <FrameLayout
@@ -29,7 +26,7 @@
 
         <include
             layout="@layout/touch_image_full"
-            app:photoUrl="@{roverPhoto.imgSrcUrl}"
+            app:photoUrl="@{viewModel.marsRoverPhoto.imgSrcUrl}"
             app:showImage="@{mainViewModel.showTouchImage}"
             app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
             tools:visibility="gone" />
@@ -56,9 +53,23 @@
                     android:contentDescription="@string/rover_image"
                     android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
                     android:scaleType="fitCenter"
-                    app:imageUrl="@{roverPhoto.imgSrcUrl}"
+                    app:imageUrl="@{viewModel.marsRoverPhoto.imgSrcUrl}"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@tools:sample/backgrounds/scenic" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save"
+                    style="?attr/materialIconButtonFilledStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#66000000"
+                    android:checkable="true"
+                    android:checked="@{viewModel.photoSaved != null}"
+                    android:contentDescription="@string/save_apod"
+                    android:onClickListener="@{() -> viewModel.handleBookmarkClick(viewModel.marsRoverPhoto)}"
+                    app:icon="@drawable/ic_menu_saved"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -82,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:maxLines="1"
-                        android:text="@{String.valueOf(roverPhoto.sol)}"
+                        android:text="@{String.valueOf(viewModel.marsRoverPhoto.sol)}"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@id/txtV_solLabel"
                         app:layout_constraintTop_toTopOf="parent"
@@ -106,7 +117,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         android:maxLines="1"
-                        android:text="@{roverPhoto.earthDate}"
+                        android:text="@{viewModel.marsRoverPhoto.earthDate}"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@id/txtV_earthDateLabel"
                         app:layout_constraintTop_toBottomOf="@id/txtV_solLabel"
@@ -130,7 +141,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         android:maxLines="1"
-                        android:text="@{roverPhoto.camera.fullName}"
+                        android:text="@{viewModel.marsRoverPhoto.camera.fullName}"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toRightOf="@id/txtV_cameraLabel"
                         app:layout_constraintTop_toBottomOf="@id/txtV_earthDateLabel"
@@ -142,8 +153,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="start|center_vertical"
-                        android:onClickListener="@{viewModel.toggleShowRoverDetails()}"
-                        android:text="@{roverPhoto.rover.name}"
+                        android:onClickListener="@{() -> viewModel.toggleShowRoverDetails()}"
+                        android:text="@{viewModel.marsRoverPhoto.rover.name}"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:drawableEndCompat="@drawable/ic_arrow_head_down"
@@ -160,7 +171,7 @@
                         android:visibility="@{viewModel.showRoverDetails == true ? View.VISIBLE : View.GONE}"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/txtV_roverName"
-                        app:rover="@{roverPhoto.rover}" />
+                        app:rover="@{viewModel.marsRoverPhoto.rover}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
