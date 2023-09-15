@@ -21,6 +21,7 @@
     <string name="showing_results_for_colon">Showing Results For:</string>
     <string name="saved_apods_colon">Saved Apods:</string>
     <string name="saved_epics_colon">Saved Epics:</string>
+    <string name="saved_rover_photos_colon">Saved Rover Photos:</string>
 
     <!--  Apod  -->
     <string name="apod_header">Astronomy Picture of the Day</string>
@@ -71,5 +72,5 @@
     <string name="all">All</string>
     <string name="previous_page">Previous Page</string>
     <string name="next_page">Next Page</string>
-
+    
 </resources>
