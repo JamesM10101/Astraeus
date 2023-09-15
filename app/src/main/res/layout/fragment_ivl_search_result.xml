@@ -14,10 +14,6 @@
         <variable
             name="viewModel"
             type="com.jamesm10101.astraeus.viewModels.IVLSearchResultViewModel" />
-
-        <variable
-            name="searchResult"
-            type="com.jamesm10101.astraeus.data.NasaIVLImage" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,10 +22,25 @@
 
         <include
             layout="@layout/touch_image_full"
-            app:photoUrl="@{searchResult.links[0].thumbnail}"
+            app:photoUrl="@{viewModel.ivlImage.links[0].thumbnail}"
             app:showImage="@{mainViewModel.showTouchImage}"
             app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
             tools:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#66000000"
+            android:checkable="true"
+            android:checked="@{viewModel.ivlSaved != null}"
+            android:contentDescription="@string/save_apod"
+            android:elevation="1dp"
+            android:onClickListener="@{viewModel.handleBookmarkClick()}"
+            app:icon="@drawable/ic_menu_saved"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -44,7 +55,7 @@
 
                 <ImageView
                     android:id="@+id/imgV_thumb"
-                    imageUrl="@{searchResult.links[0].thumbnail}"
+                    imageUrl="@{viewModel.ivlImage.links[0].thumbnail}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
@@ -65,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="@{searchResult.data[0].title}"
+                        android:text="@{viewModel.ivlImage.data[0].title}"
                         android:textAppearance="?attr/textAppearanceHeadlineSmall"
                         android:textStyle="bold"
                         app:layout_constraintTop_toTopOf="parent"
@@ -89,9 +100,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:ellipsize="end"
-                        android:text="@{searchResult.data[0].photographer != null ? searchResult.data[0].photographer : searchResult.data[0].secondaryCreator}"
+                        android:text="@{viewModel.ivlImage.data[0].photographer != null ? viewModel.ivlImage.data[0].photographer : viewModel.ivlImage.data[0].secondaryCreator}"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
-                        android:visibility="@{searchResult.data[0].photographer == null &amp;&amp; searchResult.data[0].secondaryCreator == null ? View.GONE : View.VISIBLE}"
+                        android:visibility="@{viewModel.ivlImage.data[0].photographer == null &amp;&amp; viewModel.ivlImage.data[0].secondaryCreator == null ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/txtV_copyrightLabel"
                         app:layout_constraintTop_toTopOf="@id/txtV_copyrightLabel"
@@ -106,7 +117,7 @@
                         android:justificationMode="inter_word"
                         android:maxLines="@{viewModel.showFullDetails ? 100 : 10}"
                         android:onClickListener="@{viewModel.onDescriptionTextClickListener()}"
-                        android:text="@{searchResult.data[0].description}"
+                        android:text="@{viewModel.ivlImage.data[0].description}"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         app:layout_constraintTop_toBottomOf="@id/txtV_copyright"
                         tools:maxLines="10"
@@ -146,7 +157,7 @@
                         <com.google.android.material.chip.ChipGroup
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:chipListData="@{searchResult.data[0].keywords}"
+                            app:chipListData="@{viewModel.ivlImage.data[0].keywords}"
                             app:singleLine="true" />
 
                     </HorizontalScrollView>
