@@ -9,6 +9,7 @@ import com.google.android.material.navigation.NavigationBarView
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.databinding.ActivityMainBinding
 import com.jamesm10101.astraeus.viewModels.MainViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         val transaction = supportFragmentManager.beginTransaction()
@@ -41,6 +43,10 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
             R.id.menu_explore -> {
                 ExploreFragment()
+            }
+
+            R.id.menu_saved -> {
+                SavedPostsFragment()
             }
 
             else -> {
