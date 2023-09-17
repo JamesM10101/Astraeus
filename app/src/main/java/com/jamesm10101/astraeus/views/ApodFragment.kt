@@ -29,7 +29,8 @@ class ApodFragment : MainBaseFragment() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         handleBackPress(mainViewModel)
 
-        @Suppress("DEPRECATION") apod = arguments?.getParcelable("apod")
+        @Suppress("DEPRECATION")
+        apod = arguments?.getParcelable("apod")
 
         viewModel = ViewModelProvider(
             this, ApodViewModelFactory(
