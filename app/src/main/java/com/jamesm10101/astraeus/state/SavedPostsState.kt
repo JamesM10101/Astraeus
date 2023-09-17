@@ -8,7 +8,7 @@ import com.jamesm10101.astraeus.data.EpicSortType
 import com.jamesm10101.astraeus.data.IVLResultSortType
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
 import com.jamesm10101.astraeus.data.MarsRoverPhotoSortType
-import com.jamesm10101.astraeus.data.NasaIVLImageData
+import com.jamesm10101.astraeus.data.NasaIVLImage
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -31,6 +31,6 @@ data class SavedRoverPhotosState(
 
 @Parcelize
 data class SavedIVLImageState(
-    val ivl: List<NasaIVLImageData> = emptyList(),
+    val ivl: List<NasaIVLImage> = emptyList(),
     val ivlResultSortType: IVLResultSortType = IVLResultSortType.ID,
 ) : Parcelable

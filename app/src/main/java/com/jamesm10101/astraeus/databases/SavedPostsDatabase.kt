@@ -7,11 +7,11 @@ import androidx.room.RoomDatabase
 import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
-import com.jamesm10101.astraeus.data.NasaIVLImageData
+import com.jamesm10101.astraeus.data.NasaIVLImage
 import kotlin.concurrent.Volatile
 
 @Database(
-    entities = [APOD::class, Epic::class, MarsRoverPhoto::class, NasaIVLImageData::class],
+    entities = [APOD::class, Epic::class, MarsRoverPhoto::class, NasaIVLImage::class],
     version = 1
 )
 abstract class SavedPostsDatabase : RoomDatabase() {

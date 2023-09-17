@@ -21,7 +21,7 @@ class IVLSearchResultViewModel(
     val showFullDetails: LiveData<Boolean> = _showFullDescription
 
     private val ivlImageData: NasaIVLImageData = ivlImage.data[0]
-    val ivlSaved = ivlImageDao.getSavedIvlFromId(ivlImageData.nasaId)
+    val ivlSaved = ivlImageDao.getSavedIvlFromId(ivlImage.imgUrl)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
 
     /**
@@ -32,7 +32,7 @@ class IVLSearchResultViewModel(
             viewModelScope.launch {
                 when (ivlSaved.value != null) {
                     true -> ivlImageDao.deleteIVLImage(ivlSaved.value!!)
-                    false -> ivlImageDao.saveIVLImage(ivlImageData)
+                    false -> ivlImageDao.saveIVLImage(ivlImage)
                 }
             }
         }

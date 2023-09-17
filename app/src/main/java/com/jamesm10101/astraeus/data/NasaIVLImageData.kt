@@ -1,17 +1,15 @@
 package com.jamesm10101.astraeus.data
 
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 /**
- * This class provides type converters for IVL Images.
+ * This class provides type converters for IVL Image Data.
  */
-class IVLImageConverters {
+class NasaIVLImageDataConverters {
     /**
      * Converts a list of keywords to a string.
      *
@@ -38,10 +36,9 @@ class IVLImageConverters {
 
 
 @Parcelize
-@Entity(tableName = "ivl_images")
-@TypeConverters(IVLImageConverters::class)
+@TypeConverters(NasaIVLImageDataConverters::class)
 data class NasaIVLImageData(
-    @PrimaryKey @Json(name = "nasa_id") val nasaId: String,
+    @Json(name = "nasa_id") val nasaId: String,
     @Json(name = "center") val center: String,
     @Json(name = "title") val title: String,
     @Json(name = "photographer") val photographer: String?,

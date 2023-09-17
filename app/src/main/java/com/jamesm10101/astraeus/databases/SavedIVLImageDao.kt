@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import com.jamesm10101.astraeus.data.NasaIVLImageData
+import com.jamesm10101.astraeus.data.NasaIVLImage
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -19,7 +19,7 @@ interface SavedIVLImageDao {
      * @param nasaIVLImage The IVL image to save.
      */
     @Upsert
-    suspend fun saveIVLImage(nasaIVLImage: NasaIVLImageData)
+    suspend fun saveIVLImage(nasaIVLImage: NasaIVLImage)
 
     /**
      * Deletes an IVL image.
@@ -27,7 +27,7 @@ interface SavedIVLImageDao {
      * @param nasaIVLImage The IVL image to delete.
      */
     @Delete
-    suspend fun deleteIVLImage(nasaIVLImage: NasaIVLImageData)
+    suspend fun deleteIVLImage(nasaIVLImage: NasaIVLImage)
 
     /**
      * Gets a saved NasaIVLImageData with a matching id if one exists.
@@ -35,39 +35,23 @@ interface SavedIVLImageDao {
      * @param id The id of the NasaIVLImageData to check for.
      * @return The saved NasaIVLImageData if one exists, null otherwise.
      */
-    @Query("SELECT * FROM ivl_images WHERE nasaId = :id")
-    fun getSavedIvlFromId(id: String): Flow<NasaIVLImageData?>
+    @Query("SELECT * FROM ivl_images WHERE imgUrl = :imgUrl")
+    fun getSavedIvlFromId(imgUrl: String): Flow<NasaIVLImage?>
 
     /**
      * Gets all saved IVL images ordered by ID.
      *
      * @return All saved IVL images ordered by ID.
      */
-    @Query("SELECT * FROM ivl_images ORDER BY nasaId ASC")
-    fun getAllIVLOrderByIdAsc(): Flow<List<NasaIVLImageData>>
+    @Query("SELECT * FROM ivl_images ORDER BY id ASC")
+    fun getAllIVLOrderByIdAsc(): Flow<List<NasaIVLImage>>
 
     /**
      * Gets all saved IVL images ordered by ID.
      *
      * @return All saved IVL images ordered by ID.
      */
-    @Query("SELECT * FROM ivl_images ORDER BY nasaId DESC")
-    fun getAllIVLOrderByIdDesc(): Flow<List<NasaIVLImageData>>
-
-    /**
-     * Gets all saved IVL images containing a specific keyword ordered by ID.
-     *
-     * @return All saved IVL images containing a specific keyword ordered by ID.
-     */
-    @Query("SELECT * FROM ivl_images WHERE keywords LIKE :keyword ORDER BY nasaId ASC")
-    fun getAllIVLByKeywordOrderByIdAsc(keyword: String): Flow<List<NasaIVLImageData>>
-
-    /**
-     * Gets all saved IVL images containing a specific keyword ordered by ID.
-     *
-     * @return All saved IVL images containing a specific keyword ordered by ID.
-     */
-    @Query("SELECT * FROM ivl_images WHERE keywords LIKE :keyword ORDER BY nasaId DESC")
-    fun getAllIVLByKeywordOrderByIdDesc(keyword: String): Flow<List<NasaIVLImageData>>
+    @Query("SELECT * FROM ivl_images ORDER BY id DESC")
+    fun getAllIVLOrderByIdDesc(): Flow<List<NasaIVLImage>>
 
 }
