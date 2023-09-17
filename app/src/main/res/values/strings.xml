@@ -73,5 +73,13 @@
     <string name="all">All</string>
     <string name="previous_page">Previous Page</string>
     <string name="next_page">Next Page</string>
-    
+
+    <!-- Label Arrays -->
+    <string-array name="saved_posts_tab_names">
+        <item name="apod">APOD</item>
+        <item name="epic">EPIC</item>
+        <item name="rovers">ROVERS</item>
+        <item name="ivl">IVL</item>
+    </string-array>
+
 </resources>
