@@ -19,6 +19,7 @@ import com.jamesm10101.astraeus.data.ExploreSuggestionItem
 import com.jamesm10101.astraeus.data.MarsRoverCam
 import com.jamesm10101.astraeus.data.MarsRoverInstrument
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
+import com.jamesm10101.astraeus.data.NasaIVLImage
 import com.jamesm10101.astraeus.data.NasaIVLImageCollection
 import com.jamesm10101.astraeus.databinding.MarsRoverCamsChipBinding
 import kotlin.Exception
@@ -179,6 +180,25 @@ fun bindChipListData(chipGroup: ChipGroup, data: List<String>?) {
         }
     } catch (e: Exception) {
         Log.e("bindMarsRoverCamsChip", e.message.toString())
+    }
+}
+
+@BindingAdapter("ivlGridRecyclerListData")
+fun bindGridRecyclerIVL(
+    recyclerView: RecyclerView, data: List<NasaIVLImage>?
+) {
+    try {
+        val adapter = IVLGridRecyclerAdapter()
+        val currList = adapter.currentList
+
+        recyclerView.adapter = adapter
+        adapter.submitList(data)
+
+        if (currList.isNotEmpty()) {
+            adapter.notifyItemRangeChanged(currList.size - 1, data!!.size - 1)
+        }
+    } catch (e: Exception) {
+        Log.e("bindGridRecyclerIVL", e.message.toString())
     }
 }
 
