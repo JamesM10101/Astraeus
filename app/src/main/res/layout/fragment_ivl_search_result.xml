@@ -22,25 +22,11 @@
 
         <include
             layout="@layout/touch_image_full"
+            android:elevation="2dp"
             app:photoUrl="@{viewModel.ivlImage.links[0].thumbnail}"
             app:showImage="@{mainViewModel.showTouchImage}"
             app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
             tools:visibility="gone" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_save"
-            style="?attr/materialIconButtonFilledStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#66000000"
-            android:checkable="true"
-            android:checked="@{viewModel.ivlSaved != null}"
-            android:contentDescription="@string/save_apod"
-            android:elevation="1dp"
-            android:onClickListener="@{viewModel.handleBookmarkClick()}"
-            app:icon="@drawable/ic_menu_saved"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -48,7 +34,7 @@
             android:clipToPadding="true"
             tools:context=".views.IVLSearchResultFragment">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -61,14 +47,33 @@
                     android:adjustViewBounds="true"
                     android:importantForAccessibility="no"
                     android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save"
+                    style="?attr/materialIconButtonFilledStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#66000000"
+                    android:checkable="true"
+                    android:checked="@{viewModel.ivlSaved != null}"
+                    android:contentDescription="@string/save_apod"
+                    android:elevation="1dp"
+                    android:onClickListener="@{viewModel.handleBookmarkClick()}"
+                    app:icon="@drawable/ic_menu_saved"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_imageInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="16dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="16dp">
+                    android:paddingBottom="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/imgV_thumb">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_title"
@@ -131,12 +136,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="0dp"
-                    app:layout_constraintTop_toBottomOf="@id/txtV_description" />
+                    app:layout_constraintTop_toBottomOf="@id/layout_imageInfo" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/divider_description">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_keywords"
@@ -188,7 +194,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
 
