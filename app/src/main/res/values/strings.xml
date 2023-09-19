@@ -39,6 +39,7 @@
     <string name="total_photos_colon">Total Photos:</string>
     <string name="last_response_colon">Last Response:</string>
     <string name="rover_instruments">Rover Instruments</string>
+    <string name="see_more_rover_images">See More Rover Images</string>
 
     <!--  Epic  -->
     <string name="epic_earth_photos">Epic Earth Photos</string>

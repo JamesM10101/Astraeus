@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.button.MaterialButton
+import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.data.MarsRoverPhoto
 import com.jamesm10101.astraeus.databinding.FragmentMarsRoverPhotoBinding
 import com.jamesm10101.astraeus.viewModels.MainViewModel
@@ -44,6 +46,24 @@ class MarsRoverPhotoFragment : MainBaseFragment() {
         binding.viewModel = viewModel
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<MaterialButton>(R.id.btn_seeRoverImages).setOnClickListener {
+            navigateToRoverImages()
+        }
+
+    }
+
+    /**
+     * Navigates to the [MarsRoverExploreFragment].
+     */
+    private fun navigateToRoverImages() {
+        if (marsRoverPhoto != null) parentFragmentManager.beginTransaction().replace(
+            R.id.main_fragment, MarsRoverExploreFragment.newInstance(marsRoverPhoto!!.rover.name)
+        ).addToBackStack(MarsRoverExploreFragment::class.java.name).commit()
     }
 
 }
