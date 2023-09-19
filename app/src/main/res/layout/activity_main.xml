@@ -20,6 +20,7 @@
             android:name="com.jamesm10101.astraeus.views.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:tag="com.jamesm10101.astraeus.views.HomeFragment"
             app:layout_constraintBottom_toTopOf="@id/main_bottom_nav"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_home" />
