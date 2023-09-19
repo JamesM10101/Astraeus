@@ -54,10 +54,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_save"
-
                     style="?attr/materialIconButtonFilledStyle"
-
-                    printData="@{viewModel.epic}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#66000000"

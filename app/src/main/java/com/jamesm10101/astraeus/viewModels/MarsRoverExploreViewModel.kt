@@ -102,7 +102,7 @@ class MarsRoverExploreViewModel : ViewModel() {
                 _roverDetails.value = MarsRoverAPI.retrofitService.getRoverDetails(roverName).rover
                 loadMarsRoverImages {}
             } catch (e: Exception) {
-                Log.d("marsRoverDetails", e.message.toString())
+                Log.e("marsRoverDetails", e.message.toString())
             }
         }
     }

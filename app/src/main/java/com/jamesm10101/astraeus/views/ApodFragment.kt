@@ -70,7 +70,7 @@ class ApodFragment : MainBaseFragment() {
                         val videoId = getApodUrlEmbed(apod.mediaSrcUrl)
                         youTubePlayer.loadVideo(videoId, 0f)
                     } catch (e: Exception) {
-                        Log.d("apodVideoLoad", e.message.toString())
+                        Log.e("apodVideoLoad", e.message.toString())
                     }
                 }
             })

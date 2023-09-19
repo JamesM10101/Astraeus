@@ -71,7 +71,7 @@ class ApodExploreViewModel : ViewModel() {
                 }
 
             } catch (e: Exception) {
-                Log.d("apodExploreGetImages", e.message.toString())
+                Log.e("apodExploreGetImages", e.message.toString())
             }
         }
     }
