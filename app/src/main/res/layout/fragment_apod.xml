@@ -25,8 +25,7 @@
         <include
             layout="@layout/touch_image_full"
             app:photoUrl="@{viewModel.apod.mediaType.equals(`video`) ? viewModel.apod.thumbUrl : viewModel.apod.imgSrcHDUrl}"
-            app:showImage="@{mainViewModel.showTouchImage}"
-            app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
+            app:mainViewModel="@{mainViewModel}"
             tools:visibility="gone" />
 
         <ScrollView

@@ -8,12 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="toggleView"
-            type="View.OnClickListener" />
-
-        <variable
-            name="showImage"
-            type="Boolean" />
+            name="mainViewModel"
+            type="com.jamesm10101.astraeus.viewModels.MainViewModel" />
 
         <variable
             name="photoUrl"
@@ -25,7 +21,7 @@
         android:layout_height="match_parent"
         android:background="#dd212121"
         android:elevation="1dp"
-        android:visibility="@{showImage ? View.VISIBLE : View.GONE}"
+        android:visibility="@{mainViewModel.showTouchImage ? View.VISIBLE : View.GONE}"
         tools:visibility="visible">
 
         <com.ortiz.touchview.TouchImageView
@@ -46,11 +42,22 @@
             android:layout_margin="10dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/view_image_info"
-            android:onClickListener="@{toggleView}"
+            android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
             android:src="@drawable/ic_cancel"
             app:layout_constraintRight_toRightOf="@id/imgV_epicPhotoFull"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_downloadImage"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/ic_file_download_outlined"
+            app:iconSize="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

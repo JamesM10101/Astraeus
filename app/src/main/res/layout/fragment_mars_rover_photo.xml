@@ -27,8 +27,7 @@
         <include
             layout="@layout/touch_image_full"
             app:photoUrl="@{viewModel.marsRoverPhoto.imgSrcUrl}"
-            app:showImage="@{mainViewModel.showTouchImage}"
-            app:toggleView="@{() -> mainViewModel.toggleShowTouchImage()}"
+            app:mainViewModel="@{mainViewModel}"
             tools:visibility="gone" />
 
         <ScrollView
