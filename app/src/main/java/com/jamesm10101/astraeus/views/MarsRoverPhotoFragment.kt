@@ -13,7 +13,7 @@ import com.jamesm10101.astraeus.viewModels.MainViewModel
 import com.jamesm10101.astraeus.viewModels.MarsRoverPhotoViewModel
 import com.jamesm10101.astraeus.viewModels.MarsRoverPhotoViewModelFactory
 
-class MarsRoverPhotoFragment : MainBaseFragment() {
+class MarsRoverPhotoFragment : FullImageFragment() {
 
     private lateinit var viewModel: MarsRoverPhotoViewModel
     private lateinit var mainViewModel: MainViewModel

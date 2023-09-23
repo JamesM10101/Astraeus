@@ -18,7 +18,7 @@ import java.util.Locale
 
 private const val ARG_SEARCH_RESULT = "searchResult"
 
-class IVLSearchResultFragment : MainBaseFragment() {
+class IVLSearchResultFragment : FullImageFragment() {
     private var searchResult: NasaIVLImage? = null
     private lateinit var viewModel: IVLSearchResultViewModel
     private lateinit var mainViewModel: MainViewModel

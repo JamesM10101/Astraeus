@@ -11,7 +11,7 @@ import com.jamesm10101.astraeus.viewModels.EpicPhotoViewModel
 import com.jamesm10101.astraeus.viewModels.EpicPhotoViewModelFactory
 import com.jamesm10101.astraeus.viewModels.MainViewModel
 
-class EpicPhotoFragment : MainBaseFragment() {
+class EpicPhotoFragment : FullImageFragment() {
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var viewModel: EpicPhotoViewModel

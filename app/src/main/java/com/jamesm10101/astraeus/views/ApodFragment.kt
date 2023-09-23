@@ -17,7 +17,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
-class ApodFragment : MainBaseFragment() {
+class ApodFragment : FullImageFragment() {
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var viewModel: ApodViewModel

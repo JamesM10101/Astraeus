@@ -19,7 +19,7 @@ import com.jamesm10101.astraeus.data.ExploreSuggestionItems
 import com.jamesm10101.astraeus.databinding.FragmentExploreBinding
 
 
-class ExploreFragment : MainBaseFragment() {
+class ExploreFragment : FullImageFragment() {
 
     private lateinit var exploreItems: List<ExploreSuggestionItem>
 
