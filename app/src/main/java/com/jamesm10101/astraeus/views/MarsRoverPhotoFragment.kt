@@ -55,6 +55,10 @@ class MarsRoverPhotoFragment : FullImageFragment() {
             navigateToRoverImages()
         }
 
+        view.findViewById<MaterialButton>(R.id.btn_downloadImage).setOnClickListener {
+            handleUserRequestedImageDownload(marsRoverPhoto!!.imgSrcUrl)
+        }
+
     }
 
     /**

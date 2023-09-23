@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.button.MaterialButton
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.data.NasaIVLImage
 import com.jamesm10101.astraeus.databinding.FragmentIvlSearchResultBinding
@@ -63,6 +64,10 @@ class IVLSearchResultFragment : FullImageFragment() {
             )
         } catch (e: Exception) {
             Log.e("setCreatedDate", e.message.toString())
+        }
+
+        view.findViewById<MaterialButton>(R.id.btn_downloadImage).setOnClickListener {
+            handleUserRequestedImageDownload(searchResult!!.links[0].thumbnail)
         }
     }
 

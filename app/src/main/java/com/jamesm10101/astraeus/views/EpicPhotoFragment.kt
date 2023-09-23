@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.button.MaterialButton
+import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.data.Epic
 import com.jamesm10101.astraeus.databinding.FragmentEpicPhotoBinding
 import com.jamesm10101.astraeus.viewModels.EpicPhotoViewModel
@@ -43,6 +45,14 @@ class EpicPhotoFragment : FullImageFragment() {
         binding.mainViewModel = mainViewModel
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<MaterialButton>(R.id.btn_downloadImage).setOnClickListener {
+            handleUserRequestedImageDownload(epic!!.imgSrcUrl!!)
+        }
     }
 
 }

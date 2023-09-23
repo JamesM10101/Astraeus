@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.button.MaterialButton
 import com.jamesm10101.astraeus.R
 import com.jamesm10101.astraeus.data.APOD
 import com.jamesm10101.astraeus.databinding.FragmentApodBinding
@@ -57,6 +58,15 @@ class ApodFragment : FullImageFragment() {
         val apod = when (apod != null) {
             true -> apod
             false -> mainViewModel.apodResult.value
+        }
+
+        view.findViewById<MaterialButton>(R.id.btn_downloadImage).setOnClickListener {
+            handleUserRequestedImageDownload(
+                when (apod!!.mediaType == "video") {
+                    true -> apod.thumbUrl!!
+                    false -> apod.imgSrcHDUrl!!
+                }
+            )
         }
 
         // load video into the player
