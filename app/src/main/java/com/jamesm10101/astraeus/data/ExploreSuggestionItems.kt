@@ -1,67 +1,67 @@
 package com.jamesm10101.astraeus.data
 
-import android.content.Context
-import androidx.appcompat.content.res.AppCompatResources
-import com.jamesm10101.astraeus.R
-
+/**
+ * Class representing a collection of ExploreSuggestionItem instances.
+ */
 class ExploreSuggestionItems {
 
-    private val explorePageItems = mapOf(
-        "Andromeda" to mapOf(
-            "thumb" to R.drawable.thumb_andromeda,
-            "type" to ExploreSuggestionEnums.SEARCH
-        ),
-        "Perseverance" to mapOf(
-            "thumb" to R.drawable.thumb_rover_perseverance,
-            "type" to ExploreSuggestionEnums.ROVER
-        ),
-        "APOD" to mapOf(
-            "thumb" to R.drawable.thumb_apod_logo,
-            "type" to ExploreSuggestionEnums.APOD
-        ),
-        "Juno" to mapOf(
-            "thumb" to R.drawable.thumb_juno,
-            "type" to ExploreSuggestionEnums.SEARCH
-        ),
-        "Opportunity" to mapOf(
-            "thumb" to R.drawable.thumb_rover_opportunity,
-            "type" to ExploreSuggestionEnums.ROVER
-        ),
-        "Black Holes" to mapOf(
-            "thumb" to R.drawable.thumb_black_hole,
-            "type" to ExploreSuggestionEnums.SEARCH
-        ),
-        "Milky Way" to mapOf(
-            "thumb" to R.drawable.thumb_milky_way,
-            "type" to ExploreSuggestionEnums.SEARCH
-        ),
-        "Curiosity" to mapOf(
-            "thumb" to R.drawable.thumb_rover_curiosity,
-            "type" to ExploreSuggestionEnums.ROVER
-        ),
-        "Spirit" to mapOf(
-            "thumb" to R.drawable.thumb_rover_spirit,
-            "type" to ExploreSuggestionEnums.ROVER
-        )
-    )
+    companion object {
 
-    fun getItems(context: Context): List<ExploreSuggestionItem> {
-
-        val exploreItems: ArrayList<ExploreSuggestionItem> = ArrayList()
-
-        for (key in explorePageItems.keys) {
-            exploreItems.add(
-                ExploreSuggestionItem(
-                    key,
-                    AppCompatResources.getDrawable(
-                        context,
-                        explorePageItems[key]?.get("thumb") as Int
-                    )!!,
-                    explorePageItems[key]?.get("type") as ExploreSuggestionEnums
-                )
+        private val exploreItems: List<ExploreSuggestionItem> = listOf(
+            ExploreSuggestionItem(
+                "Andromeda",
+                "https://www.nasa.gov/sites/default/files/thumbnails/image/m31-mosaic-with-groundbased-image.jpg",
+                ExploreSuggestionEnums.SEARCH
+            ),
+            ExploreSuggestionItem(
+                "Perseverance",
+                "https://mars.nasa.gov/layout/mars2020/images/PIA23764-RoverNamePlateonMars-web.jpg",
+                ExploreSuggestionEnums.ROVER
+            ),
+            ExploreSuggestionItem(
+                "APOD",
+                "https://www.nasa.gov/sites/default/files/thumbnails/image/apod_logo.png",
+                ExploreSuggestionEnums.APOD
+            ),
+            ExploreSuggestionItem(
+                "Juno",
+                "https://www.nasa.gov/sites/default/files/styles/full_width/public/images/492704main_junoartist200904-full_full.jpg",
+                ExploreSuggestionEnums.SEARCH
+            ),
+            ExploreSuggestionItem(
+                "Opportunity",
+                "https://upload.wikimedia.org/wikipedia/commons/d/d8/NASA_Mars_Rover.jpg",
+                ExploreSuggestionEnums.ROVER
+            ),
+            ExploreSuggestionItem(
+                "Black Holes",
+                "https://www.nasa.gov/sites/default/files/styles/ubernode_alt_horiz/public/thumbnails/image/simulated_bh.jpg",
+                ExploreSuggestionEnums.SEARCH
+            ),
+            ExploreSuggestionItem(
+                "Milky Way",
+                "https://exoplanets.nasa.gov/internal_resources/698",
+                ExploreSuggestionEnums.SEARCH
+            ),
+            ExploreSuggestionItem(
+                "Curiosity",
+                "https://mars.nasa.gov/system/feature_items/images/6037_msl_banner.jpg",
+                ExploreSuggestionEnums.ROVER
+            ),
+            ExploreSuggestionItem(
+                "Spirit",
+                "https://mars.nasa.gov/layout/mars2020/images/PIA23764-RoverNamePlateonMars-web.jpg",
+                ExploreSuggestionEnums.ROVER
             )
-        }
+        )
 
-        return exploreItems
+        /**
+         * Get the list of ExploreSuggestionItem instances.
+         *
+         * @return A list of predefined ExploreSuggestionItem objects.
+         */
+        fun getItems(): List<ExploreSuggestionItem> {
+            return exploreItems
+        }
     }
 }

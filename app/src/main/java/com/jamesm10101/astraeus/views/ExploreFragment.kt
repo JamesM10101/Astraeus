@@ -29,7 +29,7 @@ class ExploreFragment : FullImageFragment() {
     ): View {
         val binding = FragmentExploreBinding.inflate(inflater)
 
-        exploreItems = ExploreSuggestionItems().getItems(requireContext())
+        exploreItems = ExploreSuggestionItems.getItems()
         binding.exploreItems = exploreItems
 
         return binding.root
@@ -47,6 +47,15 @@ class ExploreFragment : FullImageFragment() {
         };
     }
 
+    /**
+     * Handles the submission of a search query triggered by a keyboard action or button click.
+     *
+     * @param textView The TextView containing the search query.
+     * @param actionId The ID of the keyboard action (e.g., IME_ACTION_GO) that triggered the submission.
+     * @param event The KeyEvent that triggered the submission (can be null if not from a KeyEvent).
+     *
+     * @return `true` if the submission was handled successfully, `false` otherwise.
+     */
     private fun submitSearchQuery(textView: TextView, actionId: Int, event: KeyEvent?): Boolean {
         return if (actionId == EditorInfo.IME_ACTION_GO) {
 
@@ -63,6 +72,12 @@ class ExploreFragment : FullImageFragment() {
         } else false
     }
 
+    /**
+     * Creates a [RecyclerItemTouchListener] to handle item clicks within an Explore carousel RecyclerView.
+     *
+     * @param recyclerView The RecyclerView that displays the Explore carousel items.
+     * @return A [RecyclerItemTouchListener] to handle item clicks.
+     */
     private fun onExploreCarouselItemClick(
         recyclerView: RecyclerView
     ): RecyclerItemTouchListener {

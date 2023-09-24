@@ -30,7 +30,7 @@
                     android:layout_height="130dp"
                     android:importantForAccessibility="no"
                     android:scaleType="centerCrop"
-                    android:src="@{exploreItem.drawableRes}"
+                    imageUrl="@{exploreItem.imgUrl}"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
                 <com.google.android.material.textview.MaterialTextView
