@@ -35,7 +35,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/saved_epics_colon"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,10 +42,9 @@
                     android:id="@+id/txtV_totalPhotos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(viewModel.state.epics.size())}"
                     android:layout_marginStart="5dp"
+                    android:text="@{String.valueOf(viewModel.state.epics.size())}"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
-                    android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/txtV_totalPhotos_label"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/placeholder_number" />
@@ -56,11 +54,11 @@
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_sort_filled"
                     android:drawablePadding="5dp"
+                    android:drawableTint="?attr/colorOnSurface"
                     android:gravity="center"
                     android:onClickListener="@{viewModel.sortClick()}"
                     android:text="@{viewModel.state.epicSortType == EpicSortType.ID ? `Recent` : `Date`}"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
-                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="ID" />

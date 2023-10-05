@@ -22,7 +22,7 @@
     <string name="saved_apods_colon">Saved Apods:</string>
     <string name="saved_epics_colon">Saved Epics:</string>
     <string name="saved_rover_photos_colon">Saved Rover Photos:</string>
-    <string name="saved_ivl_images_colon">Saved IVL Images</string>
+    <string name="saved_ivl_images_colon">Saved IVL Images:</string>
 
     <!--  Apod  -->
     <string name="apod_header">Astronomy Picture of the Day</string>
