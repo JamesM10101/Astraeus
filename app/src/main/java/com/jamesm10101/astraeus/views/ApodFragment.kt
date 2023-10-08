@@ -22,7 +22,7 @@ class ApodFragment : FullImageFragment() {
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var viewModel: ApodViewModel
-    private lateinit var youTubePlayerView: YouTubePlayerView
+    private var youTubePlayerView: YouTubePlayerView? = null
 
     private var apod: APOD? = null
 
@@ -73,9 +73,9 @@ class ApodFragment : FullImageFragment() {
 
         // load video into the player
         if (apod?.mediaType == "video") {
-            lifecycle.addObserver(youTubePlayerView)
+            lifecycle.addObserver(youTubePlayerView!!)
 
-            youTubePlayerView.initialize(object : AbstractYouTubePlayerListener() {
+            youTubePlayerView!!.initialize(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     try {
                         val videoId = getApodUrlEmbed(apod.mediaSrcUrl)
@@ -90,7 +90,7 @@ class ApodFragment : FullImageFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        youTubePlayerView.release()
+        youTubePlayerView?.release()
     }
 
 }
