@@ -85,7 +85,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -99,51 +99,91 @@
                         android:ellipsize="end"
                         android:maxLines="2"
                         android:text="@{viewModel.apod.title}"
-                        android:textSize="20sp"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
                         android:textStyle="bold"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="@string/placeholder_title" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/txtV_copyrightLabel"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:ellipsize="end"
-                        android:labelFor="@id/txtV_copyright"
-                        android:maxLines="3"
-                        android:text="@string/copyright_colon"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/txtV_title" />
+                        android:layout_marginTop="5dp">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/txtV_copyright"
-                        android:layout_width="0dp"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txtV_dateLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:labelFor="@id/txtV_copyright"
+                            android:maxLines="3"
+                            android:text="@string/date_colon"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txtV_date"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="3"
+                            android:text="@{viewModel.apod.date}"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/txtV_dateLabel"
+                            app:layout_constraintTop_toTopOf="@id/txtV_dateLabel"
+                            tools:text="@string/placeholder_date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:ellipsize="end"
-                        android:maxLines="3"
-                        android:text="@{viewModel.apod.copyright.length() > 0 ? viewModel.apod.copyright.toString().replace(`\n`, ``)  : `NASA`}"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/txtV_copyrightLabel"
-                        app:layout_constraintTop_toTopOf="@id/txtV_copyrightLabel"
-                        tools:text="@string/placeholder" />
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txtV_copyrightLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:labelFor="@id/txtV_copyright"
+                            android:maxLines="3"
+                            android:text="@string/copyright_colon"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txtV_copyright"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="3"
+                            android:text="@{viewModel.apod.copyright.length() > 0 ? viewModel.apod.copyright.toString().replace(`\n`, ``)  : `NASA`}"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/txtV_copyrightLabel"
+                            app:layout_constraintTop_toTopOf="@id/txtV_copyrightLabel"
+                            tools:text="@string/copyright_owner" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/txtV_explanation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:justificationMode="inter_word"
+                        android:layout_marginTop="5dp"
                         android:text="@{viewModel.apod.explanation}"
                         android:textSize="12sp"
                         app:layout_constraintTop_toBottomOf="@id/txtV_copyright"
                         tools:text="@string/placeholder_lorem" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
