@@ -10,7 +10,7 @@ class ExploreSuggestionItems {
         private val exploreItems: List<ExploreSuggestionItem> = listOf(
             ExploreSuggestionItem(
                 "Andromeda",
-                "https://www.nasa.gov/sites/default/files/thumbnails/image/m31-mosaic-with-groundbased-image.jpg",
+                "https://smd-cms.nasa.gov/wp-content/uploads/2023/04/m31-mosaic-with-groundbased-image-jpg.webp?resize=1024,1024",
                 ExploreSuggestionEnums.SEARCH
             ),
             ExploreSuggestionItem(
@@ -20,12 +20,12 @@ class ExploreSuggestionItems {
             ),
             ExploreSuggestionItem(
                 "APOD",
-                "https://www.nasa.gov/sites/default/files/thumbnails/image/apod_logo.png",
+                "https://www.nasa.gov/wp-content/uploads/2023/03/apod-logo.png",
                 ExploreSuggestionEnums.APOD
             ),
             ExploreSuggestionItem(
                 "Juno",
-                "https://www.nasa.gov/sites/default/files/styles/full_width/public/images/492704main_junoartist200904-full_full.jpg",
+                "https://smd-cms.nasa.gov/wp-content/uploads/2023/03/jpegpia21771.width-1600-jpg.webp?resize=1546,2000",
                 ExploreSuggestionEnums.SEARCH
             ),
             ExploreSuggestionItem(
@@ -35,7 +35,7 @@ class ExploreSuggestionItems {
             ),
             ExploreSuggestionItem(
                 "Black Holes",
-                "https://www.nasa.gov/sites/default/files/styles/ubernode_alt_horiz/public/thumbnails/image/simulated_bh.jpg",
+                "https://smd-cms.nasa.gov/wp-content/uploads/2023/06/blackhole-binary-mainsequence-jpg.webp?resize=2048,2048",
                 ExploreSuggestionEnums.SEARCH
             ),
             ExploreSuggestionItem(
