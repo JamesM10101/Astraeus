@@ -24,8 +24,8 @@
 
         <include
             layout="@layout/touch_image_full"
-            app:photoUrl="@{viewModel.apod.mediaType.equals(`video`) ? viewModel.apod.thumbUrl : viewModel.apod.imgSrcHDUrl}"
             app:mainViewModel="@{mainViewModel}"
+            app:photoUrl="@{viewModel.apod.mediaType.equals(`video`) ? viewModel.apod.thumbUrl : viewModel.apod.imgSrcHDUrl}"
             tools:visibility="gone" />
 
         <ScrollView
@@ -82,6 +82,7 @@
                     android:contentDescription="@string/save_apod"
                     android:onClickListener="@{() -> viewModel.handleBookmarkClick(viewModel.apod)}"
                     app:icon="@drawable/ic_menu_saved"
+                    app:iconTint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -176,8 +177,8 @@
                         android:id="@+id/txtV_explanation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:justificationMode="inter_word"
                         android:layout_marginTop="5dp"
+                        android:justificationMode="inter_word"
                         android:text="@{viewModel.apod.explanation}"
                         android:textSize="12sp"
                         app:layout_constraintTop_toBottomOf="@id/txtV_copyright"

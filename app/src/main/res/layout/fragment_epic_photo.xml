@@ -62,6 +62,7 @@
                     android:contentDescription="@string/save_epic"
                     android:onClickListener="@{viewModel.handleBookmarkClick()}"
                     app:icon="@drawable/ic_menu_saved"
+                    app:iconTint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

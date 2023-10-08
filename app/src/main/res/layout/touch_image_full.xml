@@ -35,18 +35,19 @@
             android:scaleType="fitCenter"
             tools:src="@tools:sample/backgrounds/scenic" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_exitTouch"
+            style="?attr/materialIconButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/view_image_info"
             android:onClickListener="@{() -> mainViewModel.toggleShowTouchImage()}"
-            android:src="@drawable/ic_cancel"
+            app:icon="@drawable/ic_cancel"
+            app:iconSize="24dp"
+            app:iconTint="@color/white"
             app:layout_constraintRight_toRightOf="@id/imgV_epicPhotoFull"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_downloadImage"
@@ -56,6 +57,7 @@
             android:backgroundTint="@android:color/transparent"
             app:icon="@drawable/ic_file_download_outlined"
             app:iconSize="24dp"
+            app:iconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

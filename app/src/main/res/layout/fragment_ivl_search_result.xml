@@ -23,8 +23,8 @@
         <include
             layout="@layout/touch_image_full"
             android:elevation="2dp"
-            app:photoUrl="@{viewModel.ivlImage.links[0].thumbnail}"
             app:mainViewModel="@{mainViewModel}"
+            app:photoUrl="@{viewModel.ivlImage.links[0].thumbnail}"
             tools:visibility="gone" />
 
         <ScrollView
@@ -62,6 +62,7 @@
                     android:elevation="1dp"
                     android:onClickListener="@{viewModel.handleBookmarkClick()}"
                     app:icon="@drawable/ic_menu_saved"
+                    app:iconTint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

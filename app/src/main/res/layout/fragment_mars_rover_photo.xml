@@ -26,8 +26,8 @@
 
         <include
             layout="@layout/touch_image_full"
-            app:photoUrl="@{viewModel.marsRoverPhoto.imgSrcUrl}"
             app:mainViewModel="@{mainViewModel}"
+            app:photoUrl="@{viewModel.marsRoverPhoto.imgSrcUrl}"
             tools:visibility="gone" />
 
         <ScrollView
@@ -67,6 +67,7 @@
                     android:contentDescription="@string/save_apod"
                     android:onClickListener="@{() -> viewModel.handleBookmarkClick(viewModel.marsRoverPhoto)}"
                     app:icon="@drawable/ic_menu_saved"
+                    app:iconTint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
